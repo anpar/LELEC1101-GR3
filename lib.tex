@@ -1,19 +1,22 @@
 \documentclass{article}
-% Langue
+% Language
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}      
 \usepackage[francais]{babel}
-
-% Mise en forme générale
+% Layout and figures
 \usepackage[top=2.5cm,bottom=2.5cm,right=2.5cm,left=2.5cm]{geometry}
 \usepackage{subfigure}
-% Package divers
+\usepackage{rotating}
+% Units and numbers
 \usepackage[squaren, Gray]{SIunits}
 \usepackage{sistyle}
 \usepackage[autolanguage]{numprint}
+% Math
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+% Links
 \usepackage{url}
-\usepackage{rotating}
-
 \usepackage{hyperref}
 \hypersetup{
     colorlinks,
@@ -23,9 +26,17 @@
     urlcolor=black
 }
 
-% Nouvelles commandes
+% New commands
+\newcommand{\matlab}{\textsc{Matlab}}
 \newcommand{\annexe}{\part{Annexes}\appendix}
 \newcommand{\biblio}[1]{\bibliographystyle{plain}\bibliography{#1}\nocite{*}}
+\DeclareMathOperator{\newdiff}{d} % use \dif instead
+\newcommand{\dif}{\newdiff\!}
+\newcommand{\fpart}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\ffpart}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+\newcommand{\fdpart}[3]{\frac{\partial^2 #1}{\partial #2\partial #3}}
+\newcommand{\fdif}[2]{\frac{\dif #1}{\dif #2}}
+\newcommand{\ffdif}[2]{\frac{\dif^2 #1}{\dif #2^2}}
 
 \newcommand{\doctitle}[1]{
 	\title{#1}
@@ -34,11 +45,11 @@
 	\textsc{Colpin} Lionel (0000-00-00)\\
 	\textsc{Deprez} Damien (0000-00-00)\\
 	\textsc{Martinelle} Thibault (0000-00-00)\\
-	\textsc{Paris} Antoine (3158-13-00)
+	\textsc{Paris} Antoine (3158-13-00)}
 	\date{\today}
 
 	\begin{document}
 
 	\maketitle
-	\tableofcontents
+	%\tableofcontents
 }
