@@ -1,0 +1,44 @@
+\documentclass{article}
+% Langue
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}      
+\usepackage[francais]{babel}
+
+% Mise en forme générale
+\usepackage[top=2.5cm,bottom=2.5cm,right=2.5cm,left=2.5cm]{geometry}
+\usepackage{subfigure}
+% Package divers
+\usepackage[squaren, Gray]{SIunits}
+\usepackage{sistyle}
+\usepackage[autolanguage]{numprint}
+\usepackage{url}
+\usepackage{rotating}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+% Nouvelles commandes
+\newcommand{\annexe}{\part{Annexes}\appendix}
+\newcommand{\biblio}[1]{\bibliographystyle{plain}\bibliography{#1}\nocite{*}}
+
+\newcommand{\doctitle}[1]{
+	\title{#1}
+	\author{\textbf{Groupe 3}\\
+	\textsc{de Broux} Michel (0000-00-00)\\
+	\textsc{Colpin} Lionel (0000-00-00)\\
+	\textsc{Deprez} Damien (0000-00-00)\\
+	\textsc{Martinelle} Thibault (0000-00-00)\\
+	\textsc{Paris} Antoine (3158-13-00)
+	\date{\today}
+
+	\begin{document}
+
+	\maketitle
+	\tableofcontents
+}
