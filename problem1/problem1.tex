@@ -6,14 +6,26 @@ périodique, symétrique, de période $T$ et de valeurs
 minimales et maximales $V_{\text{min}}$ et $V_{\text{max}}$
 respectivement. On peut décomposer cette fonction
 en série de Fourier
-\[ u(t) = A_0 + \sum_{k=1}^{\infty} A_k\cos(k\omega t)
-+ \sum_{k=1}^{\infty} B_k\sin(k\omega t). \]
+\begin{equation}
+	u(t) = A_0 + \sum_{k=1}^{\infty} A_k\cos(k\omega t)
+	+ \sum_{k=1}^{\infty} B_k\sin(k\omega t).
+	\label{eq:fourier-real}
+\end{equation}
 où $\omega = \frac{2\pi}{T}$ est la pulsation angulaire.
 La composante constante $A_0$ et les coefficients $A_k$
 et $B_k$ sont donnés par 
-\[ A_0 = \frac{1}{T} \int_0^T u(t)\dif t,\]
-\[ A_k = \frac{2}{T} \int_0^T u(t)\cos(k\omega t)\dif t,\]
-\[ B_k = \frac{2}{T} \int_0^T u(t)\sin(k\omega t)\dif t.\]
+\begin{equation} 
+	A_0 = \frac{1}{T} \int_0^T u(t)\dif t,
+	\label{eq:fourier-constant}
+\end{equation}
+\begin{equation}
+	A_k = \frac{2}{T} \int_0^T u(t)\cos(k\omega t)\dif t,
+	\label{eq:fourier-coef-cos}
+\end{equation}
+\begin{equation}
+	B_k = \frac{2}{T} \int_0^T u(t)\sin(k\omega t)\dif t.
+	\label{eq:fourier-coef-sin}
+\end{equation}
 
 \section{Question 1}
 Etablissons dans un premier temps la série de Fourier
@@ -30,9 +42,9 @@ en deux parties
 \[ u(t) =
 	\left\{
 		\begin{array}{rl}
-			V_{\text{max}} - \frac{2(V_{\text{max}-V_{\text{min}}})}{T}t 	
+			V_{\text{max}} - \frac{2(V_{\text{max}}-V_{\text{min}})}{T}t 	
 			&\text{ pour } t \in [0,\frac{T}{2}]  \\
-			2V_{\text{min}} + \frac{2(V_{\text{max}-V_{\text{min}}})}{T}t 
+			2V_{\text{min}} + \frac{2(V_{\text{max}}-V_{\text{min}})}{T}t 
 			&\text{ pour }t \in [\frac{T}{2},T] 
 		\end{array}
 	\right.
@@ -61,4 +73,67 @@ $T = \unit{1}{\second}$ et $V_{\text{max}} =
 	\label{fig:q1-fourier-10}
 \end{figure}
 
+Passons maintenant au cas général, c'est à
+dire avec une origine des temps quelconque.
+La série doit maintenant s'écrire sous la
+forme
+\begin{equation}
+	u(t) = \sum_{k=-\infty}^\infty C_k e^{jk\omega t}.
+	\label{eq:fourier-complex}
+\end{equation}
+Il s'agit ensuite d'exprimer $C_k$ en fonction
+de $A_k$ et $B_k$ et de trouver une expression
+simple pour $C_k$ faisant usage d'exponentielles
+complexes. Pour ce faire, on utilise les relations
+suivantes
+\[ \cos(k\omega t) = \frac{e^{jk\omega t}+e^{-jk\omega t}}{2},\]
+\[ \sin(k\omega t) = \frac{e^{jk\omega t}-e^{-jk\omega t}}{2j}\]
+dans l'équation \ref{eq:fourier-real}
+\[ u(t) = A_0 + \sum_{k=1}^{\infty} A_k\left(\frac{e^{jk\omega t}+e^{-jk\omega t}}{2}\right)
+	+ \sum_{k=1}^{\infty} B_k\left(\frac{e^{jk\omega t}-e^{-jk\omega t}}{2j}\right). \]
+On met un peu d'ordre dans cette expresion et on l'égalise 
+ensuite à l'équation \ref{eq:fourier-complex}
+\[ A_0 + \sum_{k=1}^{\infty} \frac{(A_k-jB_k)}{2}e^{jk\omega t}
+	+ \sum_{k=1}^{\infty} \frac{(A_k+jB_k)}{2}e^{-jk\omega t} = 
+	\sum_{k=-\infty}^\infty C_k e^{jk\omega t}.\]
+De cette égalité, on retire
+\[ C_k =
+	\left\{
+		\begin{array}{cl}
+			A_0 & \text{ pour } n = 0 \\
+			\frac{(A_k-jB_k)}{2} & \text{ pour } n = 1,2,3,\dots \\
+			\frac{(A_{-k}+jB_{-k})}{2} & \text{ pour } n = -1,-2,-3,\dots
+		\end{array}
+	\right.
+\]
+En sachant que $A_0$, $A_k$ et $B_k$ sont
+donnés respectivement par les équations
+\ref{eq:fourier-constant}, \ref{eq:fourier-coef-cos}
+et \ref{eq:fourier-coef-sin}, on pour calculer
+$C_k$ dans les trois cas. On montre facilement que
+\[ C_k = \frac{1}{T} \int_0^T u(t)e^{-jk\omega t}\dif t\]
+dans les trois cas. Cette façon de procéder est tirée de 
+\cite{complex-fourier-series}.
+Il ne nous reste plus maintenant qu'à prouver
+que $C_{-k} = C_k^*$ dans le cas d'un signal réel,
+c'est à dire $u(t) \in \R$. On trouve très facilement que
+\begin{equation}
+	C_{-k} = \frac{1}{T} \int_0^T u(t)e^{jk\omega t}\dif t.
+	\label{eq:c-minus}
+\end{equation}
+Il reste à calculer $C^*_k$
+
+\[\arraycolsep=1.4pt\def\arraystretch{2.2}
+	\begin{array}{cl}
+		C_k^* &= 1/T \left(\int_0^T u(t)e^{-jk\omega t} \dif t\right)^* \\ 
+					&= 1/T \int_0^T \left(u(t)e^{-jk\omega t}\right)^* \dif t \\
+					&= 1/T \int_0^T (u(t))^*(e^{-jk\omega t})^* \dif t \\
+					&= 1/T \int_0^T u(t)e^{jk\omega t} \dif t.
+	\end{array}
+\]
+
+Cette expression est effectivement égale à
+l'équation \ref{eq:c-minus}.
+
+\biblio{problem1}
 \input{../footer.tex}
