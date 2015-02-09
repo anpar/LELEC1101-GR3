@@ -43,7 +43,7 @@
 	\author{\textbf{Groupe 3}\\
 	\textsc{de Broux} Michel (0000-00-00)\\
 	\textsc{Colpin} Lionel (0000-00-00)\\
-	\textsc{Deprez} Damien (0000-00-00)\\
+	\textsc{Deprez} Damien (2893-13-00)\\
 	\textsc{Martinelle} Thibault (0000-00-00)\\
 	\textsc{Paris} Antoine (3158-13-00)}
 	\date{\today}
@@ -53,3 +53,12 @@
 	\maketitle
 	%\tableofcontents
 }
+
+	%commande pour insérer du code matlab dans un document avec comme section, le titre du fichier
+\newcommand{\MatLab}[1]
+{\section{#1}
+\lstinputlisting{MatLab/#1.m}}
+
+	%commande pour notifier quelque chose à modifier (couleur rouge dans le texte)
+\newcommand{\note}[1]
+{\color{red}#1\color{black}}
