@@ -64,14 +64,14 @@ On peut ensuite vérifier, à l'aide de \matlab,
 que cette décomposition en série de Fourier
 converge effectivement vers le signal triangulaire.
 La figure \ref{fig:q1-fourier-19} est la décomposition
-en série de Fourier pour $k = 1\cdots19$ pour 
+en série de Fourier pour $k = 1\dots19$ pour 
 $T = \unit{1}{\second}$ et $V_{\text{max}} = 
--V_{\text{min}} = \unit{5}{\volt}$.
+-V_{\text{min}} = \unit{2}{\volt}$.
 
 \begin{figure}[ht]
 	\centering
 	\includegraphics[scale=0.6]{img/q1-fourier-19.png}
-	\caption{Décomposition en série de Fourier pour $k=1\cdots19$.}
+	\caption{Décomposition en série de Fourier pour $k=1\dots19$.}
 	\label{fig:q1-fourier-19}
 \end{figure}
 
@@ -140,7 +140,51 @@ Cette expression est effectivement égale à
 l'équation \ref{eq:c-minus}.
 
 \section{Transformation non-linéaire}
-% TODO
+On considère pour cette question le système
+représenté à la figure \ref{fig:system}.
+
+\begin{figure}[!htb]
+	\centering
+	\begin{circuitikz}
+	  \coordinate (device) at (4,0);
+		\begin{scope}[every node/.style={draw,thick, fill=	white, rectangle,text width=3cm, minimum height=2cm, text badly centered}]
+        \node[name=device] at (device) {Système non-linéaire};
+    \end{scope}
+		\draw
+			(5.65,0.7) -- (7.5,0.7)
+			(5.65,-0.7) -- (7.5,-0.7)
+			(0.54,0.7) -- (2.39,0.7)
+			(0.54,-0.7) -- (2.39,-0.7)
+			%(0.54,-0.7) to [open,v=$x$] (0.54,0.7)
+			%(7.5,-0.7) to [open,v=$y=h(x)$] (7.5,0.7)
+			% FIX : why does it not work?
+		;
+	\end{circuitikz}
+	\caption{Système non-linéaire..}
+	\label{fig:system}
+\end{figure}
+
+Dans notre cas, le signal d'entrée $x$ est $u(t)$,
+le signal triangulaire de la question précédente et
+$h(x)$ est une transformation non-linéaire donnée par
+son développement de Taylor jusqu'à l'ordre 3 :
+$h(x) \approx a+bx+cx^2+dx^3$.
+
+Enfin, considérons le cas où 
+\[ h(x) = \frac{x}{sqrt{(x/s)^2+1}}.\]
+En observant le graphe de $h(x)$ pour plusieurs
+valeurs de $s$ (voir figure \ref{fig:non-linear-transfer}),
+on observe que ce paramètre règle en fait la saturation du circuit
+(c'est à dire la valeur maximale de tension que peut produire le circuit).
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale=0.6]{img/non-linear-transfer.png}
+	\caption{Graphe de la fonction $h(x)$ pour $s=1\dots4$.}
+	\label{fig:non-linear-transfer}
+\end{figure}
+En supposant un signal d'entrée d'amplitude $V$, la saturation
+est légère lorsque
+\[ \frac{V}{s} \approx 1.\]
 
 \biblio{problem1}
 \input{../footer.tex}
