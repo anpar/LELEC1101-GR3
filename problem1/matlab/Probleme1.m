@@ -15,3 +15,5 @@ for i=1:10;
     %pause(0.1);
 end
 plot(t,u)
+ylabel('amplitude [V]') 
+xlabel('temps [s]')
