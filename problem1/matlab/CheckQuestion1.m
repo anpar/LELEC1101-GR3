@@ -10,7 +10,8 @@ t = linspace(0,4*T,1000);
 u = zeros(1,1000);
 w = 2*pi/T;
 for k=1:limit;
-    u = u + (8/(T^2 *w^2*k^2))*(Vmax-Vmin)*(1-((-1)^k))*cos(k*w*t);
+    u = u + 2/pi^2*(Vmax-Vmin)*1/k^2*(1-(-1)^k)*cos(k*w*t);
+    %u = u + (8/(T^2 *w^2*k^2))*(Vmax-Vmin)*(1-((-1)^k))*cos(k*w*t);
     if anim == true
         plot (t,u);  
         str = sprintf('k = %d/%d',k,limit);
