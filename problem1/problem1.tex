@@ -105,9 +105,9 @@ De cette égalité, on retire
 \[ C_k =
 	\left\{
 		\begin{array}{cl}
-			A_0 & \text{ pour } n = 0 \\
-			\frac{(A_k-jB_k)}{2} & \text{ pour } n = 1,2,3,\dots \\
-			\frac{(A_{-k}+jB_{-k})}{2} & \text{ pour } n = -1,-2,-3,\dots
+			A_0 & \text{ pour } k = 0 \\
+			\frac{(A_k-jB_k)}{2} & \text{ pour } k = 1,2,3,\dots \\
+			\frac{(A_{-k}+jB_{-k})}{2} & \text{ pour } k = -1,-2,-3,\dots
 		\end{array}
 	\right.
 \]
@@ -126,7 +126,9 @@ c'est à dire $u(t) \in \R$. On trouve très facilement que
 	C_{-k} = \frac{1}{T} \int_0^T u(t)e^{jk\omega t}\dif t.
 	\label{eq:c-minus}
 \end{equation}
-Il reste à calculer $C^*_k$
+Il reste à calculer $C^*_k$. En utilisant les propriétés
+du complexe conjugués et en sachant que $u(t) \in \R$,
+on a successivement
 
 \[\arraycolsep=1.4pt\def\arraystretch{2.2}
 	\begin{array}{cl}
