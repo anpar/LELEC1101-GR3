@@ -1,8 +1,8 @@
 % INPUT :
 % * Vmin et Vmax : amplitude minimale et maximale du signal
-% * T : période du signal
+% * T : periode du signal
 % * anim : si true, affiche l'animation du signal, si false,
-% affiche juste le résultat final
+% affiche juste le resultat final
 % * pauseDuration : temps de la pause pour l'animation
 % * limit : limite du nombre k
 function [] = CheckQuestion1(Vmin,Vmax,T,anim, pauseDuration, limit)
@@ -20,8 +20,13 @@ for k=1:limit;
     end
 end
 if anim == false 
-    plot(t,u)
-    ylabel('amplitude [V]') 
-    xlabel('temps [s]')
+    % Normal plot of the triangular signal
+    plot(u,t)
+    % Plot of the output of the non linear system.
+    % For V = 2, output is a real sinus for s > 2.3.
+    % We need to find and explanation.
+    %plot(t,u-(u.^3)./(2*(2.4)^2))
+    xlabel('amplitude [V]') 
+    ylabel('temps [s]')
 end
 end
