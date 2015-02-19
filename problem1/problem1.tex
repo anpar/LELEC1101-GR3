@@ -177,8 +177,67 @@ son développement de Taylor jusqu'à l'ordre 3 :
 $h(x) \approx a+bx+cx^2+dx^3$.
 Comme annoncé, les ordres 0 et 1 s'obtiennent trivialement.
 L'odre 2 en revanche nécessite un peu plus de manipulation.
+Repartons de l'équation \ref{eq:fourier-real}, que l'on
+élève au carré
+\[\arraycolsep=1.4pt\def\arraystretch{2.2}
+	\begin{array}{cl}
+		 u^2(t)	&= A_0^2 + \left(\sum\limits_{k=1}^\infty A_k\cos(k\omega t)\right)^2 + \left(\sum\limits_{k=1}^\infty B_k\sin(k\omega t)\right)^2\\ 
+						&+~ 2A_0\sum\limits_{k=1}^\infty A_k\cos(k\omega t) + 2A_0\sum\limits_{k=1}^\infty B_k\sin(k\omega t)
+						+ 2\sum\limits_{k=1}^\infty A_k\cos(\omega t)\sum\limits_{k=1}^{\infty}B_k\sin(k\omega t). 
+	\end{array}
+\]
 
-% TODO BY MICHEL OR THIBAULT
+On peut mettre un peu d'ordre en utilisant des doubles
+sommes sur des paires d'indices $(k_1,k_2)$
+\[\arraycolsep=1.4pt\def\arraystretch{2.2}
+	\begin{array}{cl}
+		 u^2(t)	&= A_0^2 + \sum\limits_{k_1=1}^\infty\sum\limits_{k_2=1}^\infty A_{k_1}A_{k_2}\cos(k_1\omega t)\cos(k_2\omega t) 
+							+ \sum\limits_{k_1=1}^\infty\sum\limits_{k_2=1}^\infty B_{k_1}B_{k_2}\sin(k_1\omega t)\sin(k_2\omega t)\\ 
+						&+~ 2A_0\sum\limits_{k_1=1}^\infty A_{k_1}\cos(k_1\omega t) + 2A_0\sum\limits_{k_1=1}^\infty B_{k_1}\sin(k_2\omega t)
+						+ 2\sum\limits_{k_1=1}^\infty\sum\limits_{k_2=1}^\infty A_{k_1}B_{k_2}\cos(k_1\omega t)\sin(k_2\omega t). 
+	\end{array}
+\]
+On utilise ensuite les formules trigonométriques qui
+permettent de transformer un produit de fonctions
+sinusoïdales en une somme de fonctions sinusoïdales
+\[\arraycolsep=1.4pt\def\arraystretch{2.2}
+	\begin{array}{cl}
+		 u^2(t)	&= A_0^2 + \frac{1}{2}\sum\limits_{k_1=1}^\infty\sum\limits_{k_2=1}^\infty A_{k_1}A_{k_2}\cos\left((k_1-k_2)\omega t\right) 
+						+ \frac{1}{2}\sum\limits_{k_1=1}^\infty\sum\limits_{k_2=1}^\infty A_{k_1}A_{k_2}\cos\left((k_1+k_2)\omega t\right)\\ 
+						&+~ \frac{1}{2}\sum\limits_{k_1=1}^\infty\sum\limits_{k_2=1}^\infty B_{k_1}B_{k_2}\cos\left((k_1-k_2)\omega t\right)
+						- \frac{1}{2}\sum\limits_{k_1=1}^\infty\sum\limits_{k_2=1}^\infty B_{k_1}B_{k_2}\cos\left((k_1+k_2)\omega t\right)\\
+						&+~ \frac{1}{2}\sum\limits_{k_1=1}^\infty\sum\limits_{k_2=1}^\infty A_{k_1}B_{k_2}\sin\left((k_1+k_2)\omega t\right)
+						+ \frac{1}{2}\sum\limits_{k_1=1}^\infty\sum\limits_{k_2=1}^\infty A_{k_1}B_{k_2}\sin\left((k_2-k_1)\omega t\right)\\
+						&+~ 2A_0\sum\limits_{k_1=1}^\infty A_{k_1}\cos(k_1\omega t) + 2A_0\sum\limits_{k_1=1}^\infty B_{k_1}\sin(k_1\omega t).
+	\end{array}
+\]
+Enfin, en mettant en évidence, $u^2(t)$ devient
+\[\arraycolsep=1.4pt\def\arraystretch{2.2}
+	\begin{array}{cl}
+		 u^2(t)	&= A^2_0 + \frac{1}{2}\sum\limits_{k_1=1}^\infty\sum\limits_{k_2=1}^\infty (A_{k_1}A_{k_2}+B_{k_1}B_{k_2})\cos((k_1-k_2)\omega t) \\
+						&+~ \frac{1}{2}\sum\limits_{k_1=1}^\infty\sum\limits_{k_2=1}^\infty (A_{k_1}A_{k_2}-B_{k_1}B_{k_2})\cos((k_1+k_2)\omega t) \\
+						&+~ \frac{1}{2}\sum\limits_{k_1=1}^\infty\sum\limits_{k_2=1}^\infty A_{k_1}B_{k_2}(\sin\left((k_1+k_2)\omega t\right)
+						+\sin\left((k_2-k_1)\omega t\right))\\
+						&+~ 2A_0\sum\limits_{k_1=1}^\infty A_{k_1}\cos(k_1\omega t) + B_{k_1}\sin(k_1\omega t).
+	\end{array}
+\]
+On voit donc facilement à partir de cette dernière équation comment calculer
+les coefficients de la décomposition harmonique de $u^2(t)$ à partir des
+coefficients de la décomposition harmonique de $u(t)$. En considérant
+maintenant le signal $u(t)$ symétrique, $u^2(t)$ se simplifie
+(car $B_k = 0$ par symétrie) et devient
+\[\arraycolsep=1.4pt\def\arraystretch{2.2}
+	\begin{array}{cl}
+		u^2(t) 	&= A^2_0 + \frac{1}{2}\sum\limits_{k_1=1}^\infty\sum\limits_{k_2=1}^\infty A_{k_1}A_{k_2}\cos((k_1-k_2)\omega t)\\
+						&+~ \frac{1}{2}\sum\limits_{k_1=1}^\infty\sum\limits_{k_2=1}^\infty A_{k_1}A_{k_2}\cos((k_1+k_2)\omega t) \\
+						&+~ 2A_0\sum\limits_{k_1=1}^\infty A_{k_1}\cos(k_1\omega t).
+	\end{array}
+\]
+Si en plus, la composante continue $A_0$ du signal est nulle,
+$u^2(t)$ se simplifie encore
+\[ u^2(t) = \frac{1}{2}\sum\limits_{k_1=1}^\infty\sum\limits_{k_2=1}^\infty A_{k_1}A_{k_2}\cos((k_1-k_2)\omega t)
++ \frac{1}{2}\sum\limits_{k_1=1}^\infty\sum\limits_{k_2=1}^\infty A_{k_1}A_{k_2}\cos((k_1+k_2)\omega t). \]
+
 
 Enfin, considérons le cas où 
 \[ h(x) = \frac{x}{\sqrt{(x/s)^2+1}}.\]
@@ -199,7 +258,7 @@ On prouve également facilement que
 
 Le développement de Taylor jusqu'à l'ordre de 3 de
 $h(x)$ autour de $x=0$ est donné par 
-\[ h(x) \approx x-\frac{x^3}{2a^2}. \]
+\[ h(x) \approx x-\frac{x^3}{2s^2}. \]
 A l'aide de \matlab, on peut vérifier que cette
 transformation non-linéaire permet effectivement
 de transformer un signal triangulaire en un signal
@@ -217,16 +276,15 @@ la figure \ref{fig:in_out_diagram}.
 
 Cherchons maintenant un rapport $V/s$, où $V$ est
 l'amplitude du signal d'entrée du système, tel que
-la saturation soit ``légère''. Pour répondre à cette question,
+la saturation soit ``très légère''. Pour répondre à cette question,
 nous devons définir de manière plus précise ce qu'on appelle
-une saturation ``légère''. Nous avons choisis, arbitrairement
-\footnote{Nous aurions également pû choisir une définition
+une saturation ``très légère''. Nous avons choisis, arbitrairement
+, la définition suivante : la saturation est très légère
+lorsque l'amplitude de sortie vaut 95\% de l'amplitude
+maximale de sortie\footnote{Nous aurions également pû choisir une définition
 faisant intervenir la dérivée de $h(x)$, et indiquer que la
 saturation est légère lorsque $\fdif{h}{x} \approx 0.1$ par exemple,
-c'est à dire quand la pente de $h(x)$ devient faible.}, 
-la définition suivante : la saturation est légère
-lorsque l'amplitude de sortie vaut 95\% de l'amplitude
-maximale de sortie.
+c'est à dire quand la pente de $h(x)$ devient faible.}.
 \[ h(V) = 0.95s. \]
 On trouve alors que la saturation est légère pour 
 \[ \frac{V}{s} \approx 3. \]
