@@ -207,8 +207,8 @@ sinusoïdales en une somme de fonctions sinusoïdales
 						+ \frac{1}{2}\sum\limits_{k_1=1}^\infty\sum\limits_{k_2=1}^\infty A_{k_1}A_{k_2}\cos\left((k_1+k_2)\omega t\right)\\ 
 						&+~ \frac{1}{2}\sum\limits_{k_1=1}^\infty\sum\limits_{k_2=1}^\infty B_{k_1}B_{k_2}\cos\left((k_1-k_2)\omega t\right)
 						- \frac{1}{2}\sum\limits_{k_1=1}^\infty\sum\limits_{k_2=1}^\infty B_{k_1}B_{k_2}\cos\left((k_1+k_2)\omega t\right)\\
-						&+~ \frac{1}{2}\sum\limits_{k_1=1}^\infty\sum\limits_{k_2=1}^\infty A_{k_1}B_{k_2}\sin\left((k_1+k_2)\omega t\right)
-						+ \frac{1}{2}\sum\limits_{k_1=1}^\infty\sum\limits_{k_2=1}^\infty A_{k_1}B_{k_2}\sin\left((k_2-k_1)\omega t\right)\\
+						&+~ \sum\limits_{k_1=1}^\infty\sum\limits_{k_2=1}^\infty A_{k_1}B_{k_2}\sin\left((k_1+k_2)\omega t\right)
+						+ \sum\limits_{k_1=1}^\infty\sum\limits_{k_2=1}^\infty A_{k_1}B_{k_2}\sin\left((k_2-k_1)\omega t\right)\\
 						&+~ 2A_0\sum\limits_{k_1=1}^\infty A_{k_1}\cos(k_1\omega t) + 2A_0\sum\limits_{k_1=1}^\infty B_{k_1}\sin(k_1\omega t).
 	\end{array}
 \]
@@ -217,7 +217,7 @@ Enfin, en mettant en évidence, $u^2(t)$ devient
 	\begin{array}{cl}
 		 u^2(t)	&= A^2_0 + \frac{1}{2}\sum\limits_{k_1=1}^\infty\sum\limits_{k_2=1}^\infty (A_{k_1}A_{k_2}+B_{k_1}B_{k_2})\cos((k_1-k_2)\omega t) \\
 						&+~ \frac{1}{2}\sum\limits_{k_1=1}^\infty\sum\limits_{k_2=1}^\infty (A_{k_1}A_{k_2}-B_{k_1}B_{k_2})\cos((k_1+k_2)\omega t) \\
-						&+~ \frac{1}{2}\sum\limits_{k_1=1}^\infty\sum\limits_{k_2=1}^\infty A_{k_1}B_{k_2}(\sin\left((k_1+k_2)\omega t\right)
+						&+~ \sum\limits_{k_1=1}^\infty\sum\limits_{k_2=1}^\infty A_{k_1}B_{k_2}(\sin\left((k_1+k_2)\omega t\right)
 						+\sin\left((k_2-k_1)\omega t\right))\\
 						&+~ 2A_0\sum\limits_{k_1=1}^\infty A_{k_1}\cos(k_1\omega t) + B_{k_1}\sin(k_1\omega t).
 	\end{array}
@@ -238,7 +238,8 @@ Si en plus, la composante continue $A_0$ du signal est nulle,
 $u^2(t)$ se simplifie encore
 \[ u^2(t) = \frac{1}{2}\sum\limits_{k_1=1}^\infty\sum\limits_{k_2=1}^\infty A_{k_1}A_{k_2}\cos((k_1-k_2)\omega t)
 + \frac{1}{2}\sum\limits_{k_1=1}^\infty\sum\limits_{k_2=1}^\infty A_{k_1}A_{k_2}\cos((k_1+k_2)\omega t). \]
-
+Pour calculer l'ordre 3, on multiplie $u(t)$ et $u^2(t)$ et on applique
+les mêmes formules trigonométrique que pour l'ordre 2.
 
 Enfin, considérons le cas où 
 \[ h(x) = \frac{x}{\sqrt{(x/s)^2+1}}.\]
