@@ -10,7 +10,7 @@ respectivement. On peut décomposer cette fonction
 en série de Fourier
 \begin{equation}
 	u(t) = A_0 + \sum_{k=1}^{\infty} A_k\cos(k\omega t)
-	+ \sum_{k=1}^{\infty} B_k\sin(k\omega t).
+	+ \sum_{k=1}^{\infty} B_k\sin(k\omega t)
 	\label{eq:fourier-real}
 \end{equation}
 où $\omega = \frac{2\pi}{T}$ est la pulsation angulaire.
@@ -33,7 +33,7 @@ et $B_k$ sont donnés par
 Etablissons dans un premier temps la série de Fourier
 dans le cas particulier où le signal triangulaire
 est symétrique (i.e. $u(t) = u(-t)$) et centrée autour
-de l'axe de $t$. Dans ce cas particulier, on a $A_0 = 0$
+de l'axe du temps $t$. Dans ce cas particulier, on a $A_0 = 0$
 et $B_k = 0$. On peut donc réecrire la décomposition
 en série de Fourier 
 \[ u(t) = \sum_{k=1}^{\infty} A_k\cos(k\omega t).\]
@@ -90,7 +90,8 @@ complexes. Pour ce faire, on utilise les relations
 suivantes
 \[ \cos(k\omega t) = \frac{e^{jk\omega t}+e^{-jk\omega t}}{2},\]
 \[ \sin(k\omega t) = \frac{e^{jk\omega t}-e^{-jk\omega t}}{2j}\]
-dans l'équation \ref{eq:fourier-real}
+que l'on injecte dans l'équation \ref{eq:fourier-real}. On obtient
+alors
 \[ u(t) = A_0 + \sum_{k=1}^{\infty} A_k\left(\frac{e^{jk\omega t}+e^{-jk\omega t}}{2}\right)
 	+ \sum_{k=1}^{\infty} B_k\left(\frac{e^{jk\omega t}-e^{-jk\omega t}}{2j}\right). \]
 On met un peu d'ordre dans cette expresion et on l'égalise 
