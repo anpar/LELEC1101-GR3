@@ -46,6 +46,13 @@
 \newcommand{\fdif}[2]{\frac{\dif #1}{\dif #2}}
 \newcommand{\ffdif}[2]{\frac{\dif^2 #1}{\dif #2^2}}
 
+\usepackage{color}
+\newenvironment{correction}
+% Before
+{\textcolor{blue}\bgroup}
+% After
+{\egroup}
+
 \newcommand{\doctitle}[1]{
 	\title{LELEC1101 - Projet d'électricité}
 	\subtitle{#1}

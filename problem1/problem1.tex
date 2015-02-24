@@ -2,6 +2,12 @@
 \doctitle{Problème 1 - Séries de Fourier, transformation
 non-linéaire}
 
+\begin{correction}
+	Les textes écrits en bleu ont été écrits après
+	la séance de débriefing sur le problème 1 et
+	constitue donc une correction de ce dernier.
+\end{correction}
+
 \section{Introduction}
 On s'intéresse ici à un signal triangulaire $u(t)$
 périodique, symétrique, de période $T$ et de valeurs 
@@ -56,10 +62,25 @@ parties. On trouve donc\footnote{Les détails
 de calculs sont omis ici.}
 \[ A_k = \frac{2}{\pi^2k^2}(V_{\text{max}}-V_{\text{min}})
 (1 - (-1)^k).\]
+
+\begin{correction}
+	On peut noter deux chosex à partir de cette
+	expression pour $A_k$ :
+	\begin{itemize}
+		\item Les termes pour $k$ pair sont nuls ;
+		\item $A_k$ décroit en $1/k^2$. On dit alors
+		que le signal a une faible richesse harmonique.
+		Pour un signal carré par exemple, les coefficients
+		décroissent en $1/k$. Un signal carré a donc une
+		plus grande richesse harmonique.
+	\end{itemize}
+\end{correction}
+
 où $\cos(k\pi)$ a été remplacé par $(-1)^k$.
 On a finalement
 \[ u(t) = \frac{2}{\pi^2}(V_{\text{max}}-V_{\text{min}})
 \sum_{k=1}^{\infty} \frac{1}{k^2}(1 - (-1)^k)\cos(k\omega t).\]
+
 On peut ensuite vérifier, à l'aide de \matlab,
 que cette décomposition en série de Fourier
 converge effectivement vers le signal triangulaire.
@@ -77,6 +98,16 @@ $T = \unit{1}{\second}$ et $V_{\text{max}} =
 
 Passons maintenant au cas général, c'est à
 dire avec une origine des temps quelconque.
+
+\begin{correction}
+	Pour le cas général, c'est bien comme
+	on le pensait, on peut simplement décaler
+	la décomposition obtenue en effectuant une
+	translation de $\Delta t$. Un sinus
+	apparait alors à nouveau en développant
+	le $\cos(k\omega t + \Delta t)$.
+\end{correction}
+
 La série doit maintenant s'écrire sous la
 forme
 \begin{equation}
@@ -139,6 +170,11 @@ on a successivement
 
 Cette expression est effectivement égale à
 l'équation \ref{eq:c-minus}.
+
+\begin{correction}
+	Il y a moyen de faire autrement mais j'ai pas noté.
+	A voir dans les slides quand ils seront sur iCampus.
+\end{correction}
 
 \section{Transformation non-linéaire}
 %On considère pour cette question le système
@@ -241,6 +277,19 @@ $u^2(t)$ se simplifie encore
 Pour calculer l'ordre 3, on multiplie $u(t)$ et $u^2(t)$ et on applique
 les mêmes formules trigonométrique que pour l'ordre 2.
 
+\begin{correction}
+	On peut aussi décider de s'écarter de l'énoncé et de
+	considérer plutôt la notation exponentielle
+	\[ u(t) = \sum_{k=-N}^{k=N} C_ke^{jk\omega t}.\]
+	(Question : quid du $N$ alors qu'on utilise $\infty$ normalement?)
+	Calculer $u^2(t)$ et $u^3(t)$ devient alors \textbf{beaucoup}
+	plus simple. On a en effet
+	\[ u^2(t) = \sum_{k_1=-N}^N\sum_{k_2=-N}^N C_{k_1}C_{k_2}e^{j(k_1+k_2)\omega t}\]
+	que l'on peut simplifier en
+	\[ u^2(t) = \sum_{k=-2N}^{2N}C'_ke^{jk\omega t}.\]
+	On utilise le même principe pour l'ordre 3.
+\end{correction}
+
 Enfin, considérons le cas où 
 \[ h(x) = \frac{x}{\sqrt{(x/s)^2+1}}.\]
 En observant le graphe de $h(x)$ pour plusieurs
@@ -267,6 +316,17 @@ de transformer un signal triangulaire en un signal
 sinusoïdal. Cette transformation est illustrée à
 la figure \ref{fig:in_out_diagram}.
 
+\begin{correction}
+	Au travers de cette transformation non-linéaire,
+	on remarque que le signal perd en contenu harmonique.
+	On passe en effet d'un signal triangulaire (somme de
+	plusieurs harmoniques) à une quasi-sinusoïde (normalement
+	une seule harmonique). Il faut cependant se rendre compte
+	que c'est un comportement plus ou moins exceptionnel.
+	Habituellement, une transformation non-linéaire augmente
+	le contenu harmonique.
+\end{correction}
+
 \begin{figure}[ht]
 	\centering
 	\includegraphics[scale=0.6]{img/in_out_diagram.png}
@@ -292,5 +352,16 @@ On trouve alors que la saturation est légère pour
 \[ \frac{V}{s} \approx 3. \]
 Il est toutefois important de noter que ce rapport
 dépend de la définition de saturation ``légère'' choisie.
+
+\begin{correction}
+	Il fallait en fait considérer que lorsque la saturation
+	est légère, la transformation est linéaire. Le rapport
+	$V/s$ doit alors être choisi de telle sorte que seule la
+	zone linéaire de la transformation est utilisée. En considérant
+	le développement de Taylor jusqu'à l'ordre 3, on pouvait
+	trouver 
+	\[ \frac{V}{s} \text{ proche mais inférieur à } 1.\]
+\end{correction}
+
 \biblio{problem1}
 \input{../footer.tex}
