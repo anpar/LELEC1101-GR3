@@ -1,4 +1,19 @@
 \input{../lib.tex}
 \doctitle{LELEC1101 - Laboratoire #2}
-  % TODO
+ 	\section{Comparateur de tension}
+	%TO DO
+	\subsection{Limite de l'ampli op}
+	Nous remarquons que lorsque nous augmentons la fréquence du sinal, l'ampli op n'arrive plus à suivre. Il y a un délai entre le changement de tension du signal et le changement de l'ampli op. De plus, l'ampli op ne monte pas de manière instantanée à sa tension de sortie. % ajouter un schéma
+
+	\section{Bascule à hstérèse (Trigger de Schmitt)}
+	\subsection{Montage inverseur et non-inverseur avec des amplificateurs opérationnels}
+	%TO DO Schémas Labo S4 - page 2 
+Dans le cas qui nous intéresse, les ampli op ne se fonctionnent en mode saturé => la tension de sortie : $V_{out}$ vaut soit $+V_{cc}$ soit $-V_{cc}$. 
+Nous nous intéressons ici à exprimer la tension aux entrée de l'ampli op en fonction de $R_1$, $R_2$, $V_{in}$ et $V_{out}$
+Soit $V_{+}$ la tension à l'entrée non-inverseuse de l'ampli op.
+Nous avons donc
+$$\frac{V_{in}-V_{+}}{R_1}=\frac{V_{in}-V_{out}}{R_1+R_2} \rightarrow V_{+}=\left(1-\frac{R1}{R1+R2}\right)V_{in}-\frac{R_1}{R_1+R_2} V_{out}=\frac{R_2}{R_1+R_2}V_{in}-\frac{R1}{R_1+R_2}V_{out}$$
+Si à l'état initial, $V_{out}=-V_{cc}$, le basculement se fera lorsque $V_+ \less V_-$.  
+Si nous augmentons peu à peu la fréquence, nous observons que l'ampli op ne suit plus et le délai revient ce qui décale le signal de réponse
+
 \input{../footer.tex}
