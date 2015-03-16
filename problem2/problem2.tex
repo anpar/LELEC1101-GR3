@@ -136,4 +136,62 @@ des fréquences allant de \unit{100}{\hertz} à \unit{2}{\kilo\hertz}.
 	\label{fig:simulation}
 \end{figure}
 
+\newpage
+
+\section{Circuit et mesures}
+En montant le circuit proposé dans la section précédente, on
+constate que $L$ une valeur qui passe de \unit{100}{\milli\volt} à \unit{220}{\milli\volt} (voir figure \ref{fig:trigger-L}).
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale=0.7]{img/trigger-L.png}
+	\caption{Test du trigger séparé du reste du circuit.}
+	\label{fig:trigger-L}
+\end{figure}
+
+La figure \ref{fig:test-440} présente le résultat des mesures sur le circuit 
+réel de notre VCO pour une entrée de \unit{-440}{\milli\volt}. Notons 
+que les valeurs des résistances ne sont pas les mêmes que celle
+utilisée lors de la simulation pour des raisons pratiques (le
+schéma du circuit tel que construit est repris sur la
+figure \ref{fig:circuit-reel}.
+
+\begin{figure}[ht]
+	\centering
+	\rotatebox{90}{\includegraphics[scale=0.7]{img/circuit-reel.png}}
+	\caption{Schéma du circuit tel que construit.}
+	\label{fig:circuit-reel}
+\end{figure}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale=0.7]{img/circuit-test-440mv.png}
+	\caption{Test du circuit.}
+	\label{fig:test-440}
+\end{figure}
+
+Les figure suivantes montrent les résultats pour
+différentes valeurs d'entrées.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale=0.7]{img/circuit-test-260mv.png}
+	\caption{Test du circuit pour \unit{-260}{\milli\volt}.}
+	\label{fig:test-260}
+\end{figure}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale=0.7]{img/circuit-test-580mv.png}
+	\caption{Test du circuit \unit{-580}{\milli\volt}.}
+	\label{fig:test-580}
+\end{figure}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale=0.7]{img/circuit-test-1060mv.png}
+	\caption{Test du circuit \unit{-1060}{\milli\volt}.}
+	\label{fig:test-1060}
+\end{figure}
+
 \input{../footer.tex}
