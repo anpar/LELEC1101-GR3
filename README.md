@@ -1,4 +1,4 @@
 # Projet LELEC1101 - Groupe 3
-Deadlines :
-* Problème P1 : done
-* Problème P2 : done
+
+- [ ] Terminer la conception VCO (calculs, simulations et tests réels) ;
+- [ ] Dimensionner le modulateur Sigma-Delta correctement et reconstruire le circuit ;
