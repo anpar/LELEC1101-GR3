@@ -1,4 +1,76 @@
 \input{../lib.tex}
 \doctitle{Dimensionnement du modulateur sigma-delta}
 
+\section{Fonctionnement et théorie}
+Le schéma bloc du modulateur sigma-delta se trouve
+à la figure \ref{fig:sigma-delta-schema-blocs}. Ici,
+on choisit une bascule asymétrique.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale=0.75]{img/schema-blocs.png}
+	\caption{Schéma bloc du modulateur sigma-delta.}
+	\label{fig:sigma-delta-schema-blocs}
+\end{figure}
+
+Dans un premier temps, calculons la période
+d'oscillation de la sortie (qui est identique
+à la période d'oscillation de $V_I$ sur la figure
+\ref{fig:sigma-delta-schema-blocs}.
+
+On démarre avec un signal $V_{\text{ref}}$ positif et
+$V_{\text{out}} = 0$. $V_I$ est alors immédiatement positif
+et $V_{\text{out}}$ sature directement à $E$. Comme $V_{\text{ref}}$
+est $\leq E$, $V_I$ va maintenant décroître jusqu'à atteindre
+$\Delta V$. A ce moment précis, on aura à nouveau $V_{\text{out}} = 0$
+et donc $V_I$ va croître jusqu'à atteindre 0, et ainsi de suite.
+
+Sur base de cela, on peut facilement calculer
+le temps de descente $t_f$ et le temps de montée $t_r$
+du signal $V_I$\footnote{Ce signal sera soit un signal triangulaire,
+soit un signal en dents de scie, selon la valeur de $V_{\text{ref}}$.}.
+On trouve facilement,
+\[ t_f = -\frac{\Delta V}{(V_{\text{ref}} - E)K},\]
+\[ t_r = \frac{\Delta V}{KV_{\text{ref}}}.\]
+La période $T$ étant la somme du temps de descente et du temps
+de montée, on trouve
+\[ T = \frac{\Delta V}{K}\left(\frac{1}{V_{\text{ref}}} - \frac{1}{V_{\text{ref}} - E}\right)\]
+et donc finalement
+\[ f = -\frac{K}{\Delta V} \frac{V_{\text{ref}}(V_{\text{ref}}-E)}{E}.\]
+
+\paragraph{Remarque}
+A partir du temps de descente et du temps de montée, on
+peut prouver que la moyenne du signal carré $V_{\text{out}}$
+vaut bien $V_{\text{ref}}$. Il suffit de démontrer l'égalité
+suivante
+\[ \frac{E \cdot t_f + 0 \cdot t_r}{T} = V_{\text{ref}}.\]
+
+La figure \ref{fig:sigma-delta-f-vs-vref} représente un
+graphe de cette relation.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale=0.6]{img/sigma-delta-f-vs-vref.png}
+	\caption{Graphe de la fréquence en fonction de $V_{\text{ref}}$
+	pour $\Delta V$ = \unit{0.1}{\volt} et $K = \unit{10}{\second}$.}
+	\label{fig:sigma-delta-f-vs-vref}
+\end{figure}
+
+On peut faire plusieurs observations à propos de la figure
+\ref{fig:sigma-delta-f-vs-vref}. Premièrement, la fréquence
+de sortie maximale est atteinte pour $V_{\text{ref}} = \frac{E}{2}$
+et vaut
+\[ f_{\text{max}} = \frac{K}{\Delta V}\frac{E}{4}. \]
+Ensuite, pour un signal $V_{\text{ref}}$ sinusoïdal dont
+l'amplitude peut être négative, la fréquence sature.
+% FIX ME : je ne sais pas comment exprimer ça correctement.
+Or, dans le cas de notre synthétiseur, le signal $V_{\text{ref}}$
+est la sortie de notre VCO (après passage dans un filtre pour
+en extraire une sinusoïdale pure).
+Il faudra donc ``déplacer'' la courbe de la figure
+\ref{fig:sigma-delta-f-vs-vref} de manière à ce qu'elle soit
+centré autour de l'origine.
+
+\section{Dimensionnement et circuit réel}
+
 \input{../footer.tex}
