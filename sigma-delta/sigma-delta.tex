@@ -72,5 +72,46 @@ Il faudra donc ``déplacer'' la courbe de la figure
 centré autour de l'origine.
 
 \section{Dimensionnement et circuit réel}
+Le circuit du modulateur sigma-delta est représenté
+à la figure \ref{fig:sigma-delta-circuit}.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale=0.7]{img/sigma-delta-circuit.png}
+	\caption{Circuit du modulateur.}
+	\label{fig:sigma-delta-circuit}
+\end{figure}
+
+On va résoudre ce circuit pour obtenir des équations
+de la même forme que celles de la figure
+\ref{fig:sigma-delta-schema-blocs}.
+On se concentre d'abord sur l'amplificateur
+opérationnel. Grâce à la boucle de contre
+réaction négative, on peut dire $v_- = v_+ = 0$.
+On peut ensuite obtenir les courants suivants
+\[ i_{R_4} = \frac{V_{\text{ref}}}{R_4},\]
+\[ i_{R_6} = \frac{V_{\text{ee}}}{R_6},\]
+\[ i_{R_3} = \frac{V_{\text{out}}}{R_3},\]
+\[ i_{C_1} = -C_1\fdif{v_{\text{in}}}{t}.\]
+On applique ensuite KCL et on écrit
+\[ i_{C_1} = i_{R_4} + i_{R_6} + i_{R_3}.\]
+De cette relation, on tire
+\[ v_{\text{in}} = -\frac{1}{C_1}\int \frac{V_{\text{ref}}}{R_4}
++ \frac{V_{\text{ee}}}{R_6} + \frac{V_{\text{out}}}{R_3}.\]
+Pour se ramener à l'équation de la figure
+\ref{fig:sigma-delta-schema-blocs}, on pose
+$V'_{\text{ref}} = -R_3(\frac{V_{\text{ref}}}{R_4}+\frac{V_{\text{ee}}}{R_6})$
+pour enfin obtenir
+\[ v_{\text{in}} = \frac{1}{C_1R_3} \int V'_{\text{ref}} - V_{\text{out}}\]
+où $V'_{\text{ref}}$ correspond au $V_{\text{ref}}$
+de la figure \ref{fig:sigma-delta-schema-blocs}.
+
+Pour dimensionner le modulateur, on doit respecter plusieurs
+contraintes. Premièrement la fréquence pour $V_{\text{ref}} =$
+\unit{7.5}{\volt} doit être de \unit{80}{\kilo\hertz}. Et deuxièment,
+on doit déplacer la courbe de la figure \ref{fig:sigma-delta-f-vs-vref}
+de manière à ce que ces racines soient \unit{-15}{\volt} et
+\unit{+15}{\volt}. Enfin, on doit choisir $\Delta V$ de manière
+à ce que la bascule ne soit pas sensible au bruit (quelques millivolts).
 
 \input{../footer.tex}
