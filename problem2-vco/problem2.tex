@@ -1,6 +1,12 @@
 \input{../lib.tex}
 \doctitle{Conception du Voltage-Controlled-Oscillator (VCO)}
 
+\begin{correction}
+	Les textes écrits en bleu ont été écrits après
+	la séance de débriefing sur le problème 1 et
+	constitue donc une correction de ce dernier.
+\end{correction}
+
 \section{Blocs fonctionnels}
 Pour réaliser le VCO, nous avons décidé d'utiliser 3 blocs
 fonctionnels : un intégrateur, un soustracteur et un
@@ -62,6 +68,12 @@ en blocs fonctionnels) est de l'ordre de
 lorsque le trigger est déconnecté du reste du circuit.}.
 On peut observer cet effet sur la figure \ref{fig:simulation},
 qui présente les résultats de simulation.
+
+\begin{correction}
+	Cela est dû à la résistance non-nulle des transistors
+	lorsque ceux-ci sont à l'état fermé.
+\end{correction}
+
 On verra par la suite que cela entraîne quelques
 difficultés.
 
@@ -91,6 +103,12 @@ ou encore
 \[ f = \frac{v_{\text{in}} + L}{V_LRC} \]
 où $V_L = -\frac{R_1}{R_2}V_{CC}$.
 
+\begin{correction}
+	Négliger le temps de descente est une grosse approximation
+	linéaire de la véritable fonction (qui ressemble en réalité
+	à une parabole, voir laboratoire S6-S7).
+\end{correction}
+
 On peut vérifier que la simulation et le calcul fournissent
 bien le même résultat pour le circuit donné à la figure \ref{fig:circuit}
 et les résultats de simulation donnés à la figure \ref{fig:circuit}.
@@ -119,6 +137,11 @@ des fréquences allant de \unit{100}{\hertz} à \unit{2}{\kilo\hertz}.
 	\label{fig:f-vs-vin}
 \end{figure}
 
+\begin{correction}
+	La figure \ref{fig:f-vs-vin} est inutile (c'est une simple droite).
+	L'équation suffit.
+\end{correction}
+
 \begin{figure}[ht]
 	\centering
 	\rotatebox{90}{\includegraphics[scale=0.7]{img/circuit.png}}
@@ -135,6 +158,19 @@ des fréquences allant de \unit{100}{\hertz} à \unit{2}{\kilo\hertz}.
 	d'impulsions.}
 	\label{fig:simulation}
 \end{figure}
+
+\begin{correction}
+	Ce VCO n'est pas bon pour plusieurs raisons. Premièrement, il
+	génère un signal qui peut prendre plusieurs formes selon
+	certaines conditions (dents de scie, triangle asymétrique
+	ou triangle asymétrique). Cela posera problème plus tard
+	lorsqu'on voudra filtrer ce signal pour en extraire une
+	sinusoïde pure. Deuxièment, même en imposant des conditions
+	strictes pour garder un signal en dents de scie tous le temps,
+	on perdra beaucoup de puissance en le filtrant par la suite.
+	Avec un triangle, on obtient plus facilement un sinus et
+	on perdra donc moins d'énergie.
+\end{correction}
 
 \newpage
 
