@@ -123,22 +123,17 @@ soit égale à \unit{6.75}{\volt}. Il faut ensuite étirer la
 parabole de manière à ce que ses racines soient $\pm$\unit{15}{\volt}.
 Il faut donc $\frac{R_3}{R_4} = 0.45$. 
 
-En restant dans des valeurs de composants standards (série de Renard E12). 
+En utilisant des valeurs de composants standards (série de Renard E12). 
 On peut choisir, $R_3 =$ \unit{22}{\kilo\ohm} et $R_4 = R_6 =
-$ \unit{47}{\kilo\ohm}.
+$ \unit{48.5}{\kilo\ohm}.
 
 On passe ensuite à la contrainte sur la fréquence. On a comme
 relation 
-\[ \frac{K}{\Delta V} = 30796.\]
-On peut fixer arbitrairemet $\Delta V$ à \unit{1}{\volt}. On alors
-$K = \frac{1}{C_1R_3} = 30796$ et donc $C1 =$ \unit{1.5}{\nano\farad}.
+\[ \frac{K}{\Delta V}\frac{E}{4} = 80000.\]
+On peut fixer arbitrairemet $\Delta V$ à \unit{1}{\volt}. On a alors
+$K = \frac{1}{C_1R_3} = 23703.7037$ et donc $C1 =$ \unit{1.9}{\nano\farad}.
 Enfin, comme $\Delta V = \frac{R_1}{R_2}E$, on peut par exemple
-choisir $R_1 =$ \unit{10}{\kilo\ohm} et $R_2 =$ \unit{82+47}{\kilo\ohm}.
-
-% TODO : remplacer avec les nouvelles valeurs (voir sigma.m)
-% L'énoncé n'était pas très bien formulé, la fréquence maximale
-% doit en fait être de 80kHz (le Vref de l'énoncé désigne le Vref
-% du schéma bloc) pour Vref (du circuit cette fois) = 0V.
+choisir $R_1 =$ \unit{10}{\kilo\ohm} et $R_2 =$ \unit{134.6}{\kilo\ohm}.
 
 \begin{figure}[ht]
 	\centering
