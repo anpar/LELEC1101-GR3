@@ -114,4 +114,27 @@ de manière à ce que ces racines soient \unit{-15}{\volt} et
 \unit{+15}{\volt}. Enfin, on doit choisir $\Delta V$ de manière
 à ce que la bascule ne soit pas sensible au bruit (quelques millivolts).
 
+On va directement anticiper une non-idéalité de la bascule,
+la valeur de saturation $E$ n'est pas égale à la tension
+d'alimention. On a plutôt $E \approx$ \unit{13.5}{\volt}.
+
+Pour centrer la parabole, il faut que $\frac{R_3}{R_6}V_{\text{ee}}$
+soit égale à \unit{6.75}{\volt}. Il faut ensuite étirer la
+parabole de manière à ce que ses racines soient $\pm$\unit{15}{\volt}.
+Il faut donc $\frac{R_3}{R_4} = 0.45$. 
+
+En restant dans des valeurs de composants standards (série de Renard E12). 
+On peut choisir, $R_3 =$ \unit{22}{\kilo\ohm} et $R_4 = R_6 =
+$ \unit{47}{\kilo\ohm}.
+
+On passe ensuite à la contrainte sur la fréquence. On a comme
+relation 
+\[ \frac{K}{\Delta V} = 30796.\]
+On peut fixer arbitrairemet $\Delta V$ à \unit{1}{\volt}. On alors
+$K = \frac{1}{C_1R_3} = 30796$ et donc $C1 =$ \unit{1.5}{\nano\farad}.
+Enfin, comme $\Delta V = \frac{R_1}{R_2}E$, on peut par exemple
+choisir $R_1 =$ \unit{10}{\kilo\ohm} et $R_2 =$ \unit{82+47}{\kilo\ohm}.
+
+% TODO : remplacr avec les nouvelles valeurs (voir sigma.m)
+
 \input{../footer.tex}
