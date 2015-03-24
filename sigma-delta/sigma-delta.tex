@@ -135,6 +135,19 @@ $K = \frac{1}{C_1R_3} = 30796$ et donc $C1 =$ \unit{1.5}{\nano\farad}.
 Enfin, comme $\Delta V = \frac{R_1}{R_2}E$, on peut par exemple
 choisir $R_1 =$ \unit{10}{\kilo\ohm} et $R_2 =$ \unit{82+47}{\kilo\ohm}.
 
-% TODO : remplacr avec les nouvelles valeurs (voir sigma.m)
+% TODO : remplacer avec les nouvelles valeurs (voir sigma.m)
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale=0.7]{img/sigma-delta-f-vs-vref-dim.png}
+	\caption{Graphe de la fréquence en fonction de la tension d'entrée pour
+	le modulateur dimensionné.}
+	\label{fig:sigma-delta-f-vs-vref-dim}
+\end{figure}
+
+Pour appliquer la signal de sortie du modulateur
+à l'étage suivant du circuit, il faudra utiliser un diviseur
+résistif car l'étage suivant ne supporte pas des entrées supérieures
+à \unit{5}{\volt}.
 
 \input{../footer.tex}
