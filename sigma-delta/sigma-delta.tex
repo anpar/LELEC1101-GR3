@@ -139,7 +139,8 @@ résistif car l'étage suivant ne supporte pas des entrées supérieures
 à \unit{5}{\volt}.
 
 \section{Confrontation des mesures et de la théorie}
-En superposant le graphe théorique de la section précédente
+En superposant le graphe théorique que l'on peut obtenir avec les valeurs
+obtenues dans la section précédentes
 et des mesures effectués sur une implémentation en circuit
 du modulateur, on obtient la figure \ref{fig:sigma-delta-f-vs-vref-dim-vs-real}.
 
@@ -151,7 +152,16 @@ du modulateur, on obtient la figure \ref{fig:sigma-delta-f-vs-vref-dim-vs-real}.
 \end{figure}
 
 On constate que la théorie colle assez bien à la réalité. Le
-faible décalage dépend sans doute des tolérances des résistances
-ou des imprécisions de mesures.
+faible décalage dépend sans doute des tolérances des résistances,
+des variations dans les alimentations (le MyDAQ sort, dans ce cas, du
+\unit{+14.10}{\volt} et du \unit{-14.62}{\volt} plutôt que du
+$\pm$\unit{15}{\volt}), des variations dans la valeur de saturation
+$E$ ($\approx$ \unit{13.62}{\volt}). On pourrait effectuer un
+dimensionnement plus précis à partir de ces valeurs réelles afin
+d'obtenir une prévision théorique encore plus proches de la réalités.
+% FIXME (à confirmer)
+Le problème, c'est que les valeurs des tensions
+d'alimentations (par exemple) dépendent justement de la charge 
+connectée, et donc du choix des résistances effectuées lors du dimensionnement.
 
 \input{../footer.tex}
