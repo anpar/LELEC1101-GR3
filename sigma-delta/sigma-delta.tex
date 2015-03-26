@@ -148,4 +148,20 @@ Pour appliquer la signal de sortie du modulateur
 résistif car l'étage suivant ne supporte pas des entrées supérieures
 à \unit{5}{\volt}.
 
+\section{Confrontation des mesures et de la théorie}
+En superposant le graphe théorique de la section précédente
+et des mesures effectués sur une implémentation en circuit
+du modulateur, on obtient la figure \ref{fig:sigma-delta-f-vs-vref-dim-vs-real}.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale=0.7]{img/sigma-delta-f-vs-vref-dim-vs-real.png}
+	\caption{En bleu, les prévisions théoriques et en vert les mesures.}
+	\label{fig:sigma-delta-f-vs-vref-dim-vs-real}
+\end{figure}
+
+On constate que la théorie colle assez bien à la réalité. Le
+faible décalage dépend sans doute des tolérances des résistances
+ou des imprécisions de mesures.
+
 \input{../footer.tex}
