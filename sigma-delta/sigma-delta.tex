@@ -135,6 +135,11 @@ $K = \frac{1}{C_1R_3} = 23703.7037$ et donc $C1 =$ \unit{1.9}{\nano\farad}.
 Enfin, comme $\Delta V = \frac{R_1}{R_2}E$, on peut par exemple
 choisir $R_1 =$ \unit{10}{\kilo\ohm} et $R_2 =$ \unit{134.6}{\kilo\ohm}.
 
+% TODO : on peut sans doute réaliser encore un meilleur
+% dimensionnement en considérant dans les calculs les valeurs
+% exactes (je veux dire par là les valeurs mesurées sur circuit,
+% pas les valeurs théoriques).
+
 \begin{figure}[ht]
 	\centering
 	\includegraphics[scale=0.7]{img/sigma-delta-f-vs-vref-dim.png}
@@ -147,5 +152,21 @@ Pour appliquer la signal de sortie du modulateur
 à l'étage suivant du circuit, il faudra utiliser un diviseur
 résistif car l'étage suivant ne supporte pas des entrées supérieures
 à \unit{5}{\volt}.
+
+\section{Confrontation des mesures et de la théorie}
+En superposant le graphe théorique de la section précédente
+et des mesures effectués sur une implémentation en circuit
+du modulateur, on obtient la figure \ref{fig:sigma-delta-f-vs-vref-dim-vs-real}.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale=0.7]{img/sigma-delta-f-vs-vref-dim-vs-real.png}
+	\caption{En bleu, les prévisions théoriques et en vert les mesures.}
+	\label{fig:sigma-delta-f-vs-vref-dim-vs-real}
+\end{figure}
+
+On constate que la théorie colle assez bien à la réalité. Le
+faible décalage dépend sans doute des tolérances des résistances
+ou des imprécisions de mesures.
 
 \input{../footer.tex}
