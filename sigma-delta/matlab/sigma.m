@@ -1,7 +1,7 @@
 figure();
 xlim([-15 15])
 vref = linspace(-15,15,1000);
-Vee = -14.63; %-15
+Vee = -15; %-14.63;
 % On tient compte de la non-idéalité
 % E neq Vcc.
 E = 13.62; %13.5

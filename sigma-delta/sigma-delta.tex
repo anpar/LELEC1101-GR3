@@ -36,7 +36,10 @@ La période $T$ étant la somme du temps de descente et du temps
 de montée, on trouve
 \[ T = \frac{\Delta V}{K}\left(\frac{1}{V_{\text{ref}}} - \frac{1}{V_{\text{ref}} - E}\right)\]
 et donc finalement
-\[ f = -\frac{K}{\Delta V} \frac{V_{\text{ref}}(V_{\text{ref}}-E)}{E}.\]
+\begin{equation} 
+	f = -\frac{K}{\Delta V} \frac{V_{\text{ref}}(V_{\text{ref}}-E)}{E}.
+	\label{eq:sigma-delta-frequency}
+\end{equation}
 
 \paragraph{Remarque}
 A partir du temps de descente et du temps de montée, on
@@ -45,30 +48,20 @@ vaut bien $V_{\text{ref}}$. Il suffit de démontrer l'égalité
 suivante
 \[ \frac{E \cdot t_f + 0 \cdot t_r}{T} = V_{\text{ref}}.\]
 
-La figure \ref{fig:sigma-delta-f-vs-vref} représente un
-graphe de cette relation.
+La fréquence en fonction de $V_{\text{ref}}$ est donc
+une parabole avec une racine en \unit{0}{\volt} et une
+racine en \unit{E}{\volt}.
 
-\begin{figure}[ht]
-	\centering
-	\includegraphics[scale=0.6]{img/sigma-delta-f-vs-vref.png}
-	\caption{Graphe de la fréquence en fonction de $V_{\text{ref}}$
-	pour $\Delta V$ = \unit{0.1}{\volt} et $K = \unit{10}{\second}$.}
-	\label{fig:sigma-delta-f-vs-vref}
-\end{figure}
-
-On peut faire plusieurs observations à propos de la figure
-\ref{fig:sigma-delta-f-vs-vref}. Premièrement, la fréquence
-de sortie maximale est atteinte pour $V_{\text{ref}} = \frac{E}{2}$
-et vaut
+On peut déduire plusieurs chose de l'équation \ref{eq:sigma-delta-frequency}. 
+Premièrement, la fréquence de sortie maximale est atteinte pour 
+$V_{\text{ref}} = \frac{E}{2}$ et vaut
 \[ f_{\text{max}} = \frac{K}{\Delta V}\frac{E}{4}. \]
 Ensuite, pour un signal $V_{\text{ref}}$ sinusoïdal dont
 l'amplitude peut être négative, la fréquence sature.
-% FIX ME : je ne sais pas comment exprimer ça correctement.
 Or, dans le cas de notre synthétiseur, le signal $V_{\text{ref}}$
 est la sortie de notre VCO (après passage dans un filtre pour
 en extraire une sinusoïdale pure).
-Il faudra donc ``déplacer'' la courbe de la figure
-\ref{fig:sigma-delta-f-vs-vref} de manière à ce qu'elle soit
+Il faudra donc ``déplacer'' la parabole de manière à ce qu'elle soit
 centré autour de l'origine.
 
 \section{Dimensionnement et circuit réel}
@@ -109,7 +102,7 @@ de la figure \ref{fig:sigma-delta-schema-blocs}.
 Pour dimensionner le modulateur, on doit respecter plusieurs
 contraintes. Premièrement la fréquence pour $V_{\text{ref}} =$
 \unit{7.5}{\volt} doit être de \unit{80}{\kilo\hertz}. Et deuxièment,
-on doit déplacer la courbe de la figure \ref{fig:sigma-delta-f-vs-vref}
+on doit déplacer la parabole
 de manière à ce que ces racines soient \unit{-15}{\volt} et
 \unit{+15}{\volt}. Enfin, on doit choisir $\Delta V$ de manière
 à ce que la bascule ne soit pas sensible au bruit (quelques millivolts).
@@ -140,14 +133,6 @@ choisir $R_1 =$ \unit{10}{\kilo\ohm} et $R_2 =$ \unit{134.6}{\kilo\ohm}.
 % exactes (je veux dire par là les valeurs mesurées sur circuit,
 % pas les valeurs théoriques).
 
-\begin{figure}[ht]
-	\centering
-	\includegraphics[scale=0.7]{img/sigma-delta-f-vs-vref-dim.png}
-	\caption{Graphe de la fréquence en fonction de la tension d'entrée pour
-	le modulateur dimensionné.}
-	\label{fig:sigma-delta-f-vs-vref-dim}
-\end{figure}
-
 Pour appliquer la signal de sortie du modulateur
 à l'étage suivant du circuit, il faudra utiliser un diviseur
 résistif car l'étage suivant ne supporte pas des entrées supérieures
@@ -168,7 +153,5 @@ du modulateur, on obtient la figure \ref{fig:sigma-delta-f-vs-vref-dim-vs-real}.
 On constate que la théorie colle assez bien à la réalité. Le
 faible décalage dépend sans doute des tolérances des résistances
 ou des imprécisions de mesures.
-
-% FIX : difference between figure 4 and 5
 
 \input{../footer.tex}
