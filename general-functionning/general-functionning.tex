@@ -1,6 +1,65 @@
 \input{../lib.tex}
 \doctitle{Fonctionnement général d'un synthétiseur}
 
-% TODO
+Le synthétiseur analogique que nous devons concevoir
+est divisé en 3 blocs principaux (voir figure \ref{fig:gf-global}).
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale=0.65]{img-gf/gf-global.png}
+	\caption{Schéma blocs global du synthétiseur.}
+	\label{fig:gf-global}
+\end{figure}
+
+Premièrement, il y a bien sur un clavier. Ce clavier est simplement
+composé de diviseurs résistifs et de boutons poussoirs. Il doit
+permettre de générer différentes tensions continues, chacune
+correspondant à une note.
+
+Cette tension continue sera ensuite appliquée en entrée du générateur
+d'onde. Ce générateur se décompose en deux blocs (voir figure
+\ref{fig:gf-generator}). Un oscillateur contrôlé en tension 
+(\textit{voltage controlled oscillator}, ou VCO en anglais) va dans
+un premier temps transformer cette tension d'entrée continue
+en un signal périodique (dans notre cas un signal triangulaire) 
+dont la fréquence sera directement proportionnel
+à la tension d'entrée, de telle sorte que
+\unit{1}{\milli\volt} corresponde à \unit{1}{\hertz}. Ensuite, un filtre
+transformera ce signal triangulaire en signal sinusoïdal
+\footnote{On comprend ici l'intérêt de générer un signal triangulaire plutôt
+qu'un signal en dents de scie ou un signal carré. En effet, filtrer
+de tels signaux pour obtenir un signal sinusoïdal engendrera
+une plus grande perte de puissance qu'à partir d'un signal
+triangulaire.}. % FIXME : footnote à confirmer.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale=0.65]{img-gf/gf-generator.png}
+	\caption{Schéma blocs du générateur d'onde.}
+	\label{fig:gf-generator}
+\end{figure}
+
+Afin d'obtenir un son à partir de ce signal sinusoïdal, il
+va falloir l'appliquer en entrée d'un haut-parleur. Mais avant
+cela, il va falloir l'amplifier. Pour ce faire, nous allons
+utiliser un amplificateur de classe D (voir figure
+\ref{fig:gf-ampli}). Un tel amplificateur
+a	un très bon rendement, il consomme peu de puissance. Cependant,
+pour que cet amplificateur fonctionne correctement, il faut
+lui appliquer un signal carré en entrée. Pour transformer
+notre signal sinusoïdal en signal carré, nous allons utiliser un
+système de modulation de largeur d'impulsion (ou MLI). Le MLI
+transforme son entrée sinusoïdale en un signal carré dont la
+valeur moyenne est égale à l'entrée. Ce
+signal carré est ensuite amplifié par l'étage de puissance
+et filtré afin d'obtenir à nouveau un signal sinusoïdal que
+l'on pourra cette fois directement appliqué en entrée du haut-parleur.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale=0.60]{img-gf/gf-ampli.png}
+	\caption{Schéma blocs de l'amplificateur.}
+	\label{fig:gf-ampli}
+\end{figure}
 
 \input{../footer.tex}
