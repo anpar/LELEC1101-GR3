@@ -1,6 +1,17 @@
 \input{../lib.tex}
 \doctitle{L'oscillateur contrôlé en tension (VCO)}
 
-% TODO
+La figure 1 nous montre le schéma bloc du VCO.
+
+
+Le VCO se compose des 3 blocs suivants:
+\begin{itemize}
+\item l'integrator controller (le contrôleur de l'intégrateur) qui se compose lui-même d'un switch et d'un summing (sommateur)
+\item l'integrator (intégrateur)
+\item le trigger de Schmitt (bascule à hystérèse)
+\end{itemize}
+
+Le signal d'entrée ($in$) est constant et vaut $\alpha$. Appelons $V_L$ la tension de basculement inférieure du trigger, $V_H$ la tension de basculement supérieure et $V_{CC}$ la tension d'alimentation du trigger.
+Si la sortie du trigger de Schmitt ($control$) vaut $0$, la sortie du switch de l'integrator controller vaut $0$. Dès lors, la sortie du bloc integrator controller vaut $-\alpha$.  Après passage dans l'integrator, nous avons la droite $-\alpha t$. La sortie du trigger restera à $0$ tant que la sortie de l'integrator est supérieure à $V_L$. Lorsque la sortie de l'integrator a atteint $V_L$, le trigger bascule et sa tension de sortie devient $V_{CC}$. Le switch change d'état et sa sortie devient $\alpha$. La sortie de l'integrator controller devient donc $\alpha$. Après passage dans l'integrator, nous avons la droite $\alpha t$. La sortie du trigger restera à $V_{CC}$ tant que la sortie de l'integrator est inférieure à $V_H$. Lorsque la sortie de l'integrator a atteint $V_H$, le trigger bascule et sa tension de sortie devient $0$. Le switch rechange d'état et sa sortie devient $0$. Et nous pouvons recommencer la même boucle.
 
 \input{../footer.tex}

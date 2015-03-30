@@ -2,9 +2,8 @@
 \doctitle{Dimensionnement du modulateur sigma-delta}
 
 \subsection{Fonctionnement et théorie}
-Le schéma bloc du modulateur sigma-delta se trouve
-à la figure \ref{fig:sigma-delta-schema-blocs}. Ici,
-on choisit une bascule asymétrique.
+Le schéma bloc du modulateur sigma-delta est représenté
+à la figure \ref{fig:sigma-delta-schema-blocs}. 
 
 \begin{figure}[ht]
 	\centering
@@ -13,27 +12,28 @@ on choisit une bascule asymétrique.
 	\label{fig:sigma-delta-schema-blocs}
 \end{figure}
 
+Considérons le cas de la bascule asymétrique.
 Dans un premier temps, calculons la période
 d'oscillation de la sortie (qui est identique
 à la période d'oscillation de $V_I$ sur la figure
 \ref{fig:sigma-delta-schema-blocs}.
 
-On démarre avec un signal $V_{\text{ref}}$ positif et
+Nous démarrons avec un signal $V_{\text{ref}}$ positif et
 $V_{\text{out}} = 0$. $V_I$ est alors immédiatement positif
 et $V_{\text{out}}$ sature directement à $E$. Comme $V_{\text{ref}}$
 est $\leq E$, $V_I$ va maintenant décroître jusqu'à atteindre
-$\Delta V$. A ce moment précis, on aura à nouveau $V_{\text{out}} = 0$
+$\Delta V$. A ce moment précis, nous aurons à nouveau $V_{\text{out}} = 0$
 et donc $V_I$ va croître jusqu'à atteindre 0, et ainsi de suite.
 
-Sur base de cela, on peut facilement calculer
+Sur base de cela, nous pouvons facilement calculer
 le temps de descente $t_f$ et le temps de montée $t_r$
 du signal $V_I$\footnote{Ce signal sera soit un signal triangulaire,
 soit un signal en dents de scie, selon la valeur de $V_{\text{ref}}$.}.
-On trouve facilement,
+Nous trouvons facilement,
 \[ t_f = -\frac{\Delta V}{(V_{\text{ref}} - E)K},\]
 \[ t_r = \frac{\Delta V}{KV_{\text{ref}}}.\]
 La période $T$ étant la somme du temps de descente et du temps
-de montée, on trouve
+de montée, nous trouvons
 \[ T = \frac{\Delta V}{K}\left(\frac{1}{V_{\text{ref}}} - \frac{1}{V_{\text{ref}} - E}\right)\]
 et donc finalement
 \begin{equation} 
@@ -42,8 +42,8 @@ et donc finalement
 \end{equation}
 
 \paragraph{Remarque}
-A partir du temps de descente et du temps de montée, on
-peut prouver que la moyenne du signal carré $V_{\text{out}}$
+A partir du temps de descente et du temps de montée, nous
+pouvons prouver que la moyenne du signal carré $V_{\text{out}}$
 vaut bien $V_{\text{ref}}$. Il suffit de démontrer l'égalité
 suivante
 \[ \frac{E \cdot t_f + 0 \cdot t_r}{T} = V_{\text{ref}}.\]
@@ -52,7 +52,7 @@ La fréquence en fonction de $V_{\text{ref}}$ est donc
 une parabole avec une racine en \unit{0}{\volt} et une
 racine en \unit{E}{\volt}.
 
-On peut déduire plusieurs chose de l'équation \ref{eq:sigma-delta-frequency}. 
+Nous pouvons déduire plusieurs chose de l'équation \ref{eq:sigma-delta-frequency}. 
 Premièrement, la fréquence de sortie maximale est atteinte pour 
 $V_{\text{ref}} = \frac{E}{2}$ et vaut
 \[ f_{\text{max}} = \frac{K}{\Delta V}\frac{E}{4}. \]
@@ -62,7 +62,7 @@ Or, dans le cas de notre synthétiseur, le signal $V_{\text{ref}}$
 est la sortie de notre VCO (après passage dans un filtre pour
 en extraire une sinusoïdale pure).
 Il faudra donc ``déplacer'' la parabole de manière à ce qu'elle soit
-centré autour de l'origine.
+centrée autour de l'origine.
 
 \subsection{Dimensionnement et circuit réel}
 Le circuit du modulateur sigma-delta est représenté
@@ -75,57 +75,57 @@ Le circuit du modulateur sigma-delta est représenté
 	\label{fig:sigma-delta-circuit}
 \end{figure}
 
-On va résoudre ce circuit pour obtenir des équations
+Nous allons résoudre ce circuit pour obtenir des équations
 de la même forme que celles de la figure
 \ref{fig:sigma-delta-schema-blocs}.
-On se concentre d'abord sur l'amplificateur
+Concentrons nous d'abord sur l'amplificateur
 opérationnel. Grâce à la boucle de contre
-réaction négative, on peut dire $v_- = v_+ = 0$.
-On peut ensuite obtenir les courants suivants
+réaction négative, nous pouvons dire $v_- = v_+ = 0$.
+Nous obtenons ensuite  les courants suivants:
 \[ i_{R_4} = \frac{V_{\text{ref}}}{R_4},\]
 \[ i_{R_6} = \frac{V_{\text{ee}}}{R_6},\]
 \[ i_{R_3} = \frac{V_{\text{out}}}{R_3},\]
 \[ i_{C_1} = -C_1\fdif{v_{\text{in}}}{t}.\]
-On applique ensuite KCL et on écrit
+Appliquons ensuite KCL et  écrivons
 \[ i_{C_1} = i_{R_4} + i_{R_6} + i_{R_3}.\]
-De cette relation, on tire
+De cette relation, nous tirons
 \[ v_{\text{in}} = -\frac{1}{C_1}\int \frac{V_{\text{ref}}}{R_4}
 + \frac{V_{\text{ee}}}{R_6} + \frac{V_{\text{out}}}{R_3}.\]
 Pour se ramener à l'équation de la figure
-\ref{fig:sigma-delta-schema-blocs}, on pose
+\ref{fig:sigma-delta-schema-blocs}, nous posons
 $V'_{\text{ref}} = -R_3(\frac{V_{\text{ref}}}{R_4}+\frac{V_{\text{ee}}}{R_6})$
 pour enfin obtenir
 \[ v_{\text{in}} = \frac{1}{C_1R_3} \int V'_{\text{ref}} - V_{\text{out}}\]
 où $V'_{\text{ref}}$ correspond au $V_{\text{ref}}$
 de la figure \ref{fig:sigma-delta-schema-blocs}.
 
-Pour dimensionner le modulateur, on doit respecter plusieurs
-contraintes. Premièrement la fréquence pour $V_{\text{ref}} =$
+Pour dimensionner le modulateur, nous devons respecter plusieurs
+contraintes. Premièrement, la fréquence pour $V_{\text{ref}} =$
 \unit{7.5}{\volt} doit être de \unit{80}{\kilo\hertz}. Et deuxièment,
-on doit déplacer la parabole
+nous devons déplacer la parabole
 de manière à ce que ces racines soient \unit{-15}{\volt} et
-\unit{+15}{\volt}. Enfin, on doit choisir $\Delta V$ de manière
+\unit{+15}{\volt}. Enfin, nous devons choisir $\Delta V$ de manière
 à ce que la bascule ne soit pas sensible au bruit (quelques millivolts).
 
-On va directement anticiper une non-idéalité de la bascule,
+Nous allons directement anticiper une non-idéalité de la bascule,
 la valeur de saturation $E$ n'est pas égale à la tension
-d'alimention. On a plutôt $E \approx$ \unit{13.5}{\volt}.
+d'alimention. Nous avons plutôt $E \approx$ \unit{13.5}{\volt}.
 
 Pour centrer la parabole, il faut que $\frac{R_3}{R_6}V_{\text{ee}}$
 soit égale à \unit{6.75}{\volt}. Il faut ensuite étirer la
 parabole de manière à ce que ses racines soient $\pm$\unit{15}{\volt}.
 Il faut donc $\frac{R_3}{R_4} = 0.45$. 
 
-En utilisant des valeurs de composants standards (série de Renard E12). 
-On peut choisir, $R_3 =$ \unit{22}{\kilo\ohm} et $R_4 = R_6 =
+En utilisant des valeurs de composants standards (série de Renard E12), 
+nous pouvons choisir, $R_3 =$ \unit{22}{\kilo\ohm} et $R_4 = R_6 =
 $ \unit{48.5}{\kilo\ohm}.
 
-On passe ensuite à la contrainte sur la fréquence. On a comme
-relation 
+Passons ensuite à la contrainte sur la fréquence. Nous avons la 
+relation suivante:
 \[ \frac{K}{\Delta V}\frac{E}{4} = 80000.\]
-On peut fixer arbitrairemet $\Delta V$ à \unit{1}{\volt}. On a alors
+Nous pouvons fixer arbitrairemet $\Delta V$ à \unit{1}{\volt}. Nous avons alors
 $K = \frac{1}{C_1R_3} = 23703.7037$ et donc $C1 =$ \unit{1.9}{\nano\farad}.
-Enfin, comme $\Delta V = \frac{R_1}{R_2}E$, on peut par exemple
+Enfin, comme $\Delta V = \frac{R_1}{R_2}E$, nous pouvons par exemple
 choisir $R_1 =$ \unit{10}{\kilo\ohm} et $R_2 =$ \unit{134.6}{\kilo\ohm}.
 
 % TODO : on peut sans doute réaliser encore un meilleur
@@ -139,10 +139,10 @@ résistif car l'étage suivant ne supporte pas des entrées supérieures
 à \unit{5}{\volt}.
 
 \subsection{Confrontation des mesures et de la théorie}
-En superposant le graphe théorique que l'on peut obtenir avec les valeurs
-obtenues dans la section précédentes
-et des mesures effectués sur une implémentation en circuit
-du modulateur, on obtient la figure \ref{fig:sigma-delta-f-vs-vref-dim-vs-real}.
+En superposant le graphe théorique que nous pouvons obtenir avec les valeurs
+obtenues dans la section précédente
+et des mesures effectuées sur une implémentation en circuit
+du modulateur, nous obtenons la figure \ref{fig:sigma-delta-f-vs-vref-dim-vs-real}.
 
 \begin{figure}[ht]
 	\centering
@@ -151,17 +151,17 @@ du modulateur, on obtient la figure \ref{fig:sigma-delta-f-vs-vref-dim-vs-real}.
 	\label{fig:sigma-delta-f-vs-vref-dim-vs-real}
 \end{figure}
 
-On constate que la théorie colle assez bien à la réalité. Le
+Nous constatons que la théorie colle assez bien à la réalité. Le
 faible décalage dépend sans doute des tolérances des résistances,
 des variations dans les alimentations (le MyDAQ sort, dans ce cas, du
 \unit{+14.10}{\volt} et du \unit{-14.62}{\volt} plutôt que du
 $\pm$\unit{15}{\volt}), des variations dans la valeur de saturation
-$E$ ($\approx$ \unit{13.62}{\volt}). On pourrait effectuer un
+$E$ ($\approx$ \unit{13.62}{\volt}). Nous pourrions effectuer un
 dimensionnement plus précis à partir de ces valeurs réelles afin
-d'obtenir une prévision théorique encore plus proches de la réalités.
+d'obtenir une prévision théorique encore plus proche de la réalité.
 % FIXME (à confirmer)
 Le problème, c'est que les valeurs des tensions
-d'alimentations (par exemple) dépendent justement de la charge 
+d'alimentation (par exemple) dépendent justement de la charge 
 connectée, et donc du choix des résistances effectuées lors du dimensionnement.
 
 \input{../footer.tex}
