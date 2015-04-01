@@ -3,8 +3,8 @@
 
 \subsection{Fonctionnement et théorie}
 Le schéma bloc du modulateur sigma-delta se trouve
-à la figure \ref{fig:sigma-delta-schema-blocs}. Ici,
-on choisit une bascule asymétrique.
+à la figure \ref{fig:sigma-delta-schema-blocs}. Le
+modulateur du synthétiseur utilise une bascule asymétrique.
 
 \begin{figure}[ht]
 	\centering
@@ -13,28 +13,27 @@ on choisit une bascule asymétrique.
 	\label{fig:sigma-delta-schema-blocs}
 \end{figure}
 
-Dans un premier temps, calculons la période
-d'oscillation de la sortie (qui est identique
-à la période d'oscillation de $V_I$ sur la figure
-\ref{fig:sigma-delta-schema-blocs}.
+La période d'oscillation du signal de sortie (qui est 
+identique à la période d'oscillation du signal intermédiaire
+$V_I$ sur la figure \ref{fig:sigma-delta-schema-blocs}).
+se calcule en effectuant le raisonnement suivant.
 
-On démarre avec un signal $V_{\text{ref}}$ positif et
+Initialement, soit $V_{\text{ref}}$  positif et
 $V_{\text{out}} = 0$. $V_I$ est alors immédiatement positif
 et $V_{\text{out}}$ sature directement à $E$. Comme $V_{\text{ref}}$
 est $\leq E$, $V_I$ va maintenant décroître jusqu'à atteindre
-$\Delta V$. A ce moment précis, on aura à nouveau $V_{\text{out}} = 0$
+$\Delta V$. A ce moment précis, $V_{\text{out}} = 0$
 et donc $V_I$ va croître jusqu'à atteindre 0, et ainsi de suite.
 
-Sur base de cela, on peut facilement calculer
-le temps de descente $t_f$ et le temps de montée $t_r$
+De là s'obtiennent le temps de descente $t_f$ et le temps de montée $t_r$
 du signal $V_I$\footnote{Ce signal sera soit un signal triangulaire,
-soit un signal en dents de scie, selon la valeur de $V_{\text{ref}}$.}.
-On trouve facilement,
+soit un signal en dents de scie, selon la valeur de $V_{\text{ref}}$.}
 \[ t_f = -\frac{\Delta V}{(V_{\text{ref}} - E)K},\]
 \[ t_r = \frac{\Delta V}{KV_{\text{ref}}}.\]
+
 La période $T$ étant la somme du temps de descente et du temps
-de montée, on trouve
-\[ T = \frac{\Delta V}{K}\left(\frac{1}{V_{\text{ref}}} - \frac{1}{V_{\text{ref}} - E}\right)\]
+de montée, elle est donnée par
+\[ T = \frac{\Delta V}{K}\left(\frac{1}{V_{\text{ref}}} - \frac{1}{V_{\text{ref}} - E}\right) \]
 et donc finalement
 \begin{equation} 
 	f = -\frac{K}{\Delta V} \frac{V_{\text{ref}}(V_{\text{ref}}-E)}{E}.
@@ -52,13 +51,12 @@ La fréquence en fonction de $V_{\text{ref}}$ est donc
 une parabole avec une racine en \unit{0}{\volt} et une
 racine en \unit{E}{\volt}.
 
-On peut déduire plusieurs chose de l'équation \ref{eq:sigma-delta-frequency}. 
-Premièrement, la fréquence de sortie maximale est atteinte pour 
+La fréquence de sortie maximale est atteinte pour 
 $V_{\text{ref}} = \frac{E}{2}$ et vaut
 \[ f_{\text{max}} = \frac{K}{\Delta V}\frac{E}{4}. \]
 Ensuite, pour un signal $V_{\text{ref}}$ sinusoïdal dont
 l'amplitude peut être négative, la fréquence sature.
-Or, dans le cas de notre synthétiseur, le signal $V_{\text{ref}}$
+Or, dans le cas du synthétiseur, le signal $V_{\text{ref}}$
 est la sortie de notre VCO (après passage dans un filtre pour
 en extraire une sinusoïdale pure).
 Il faudra donc ``déplacer'' la parabole de manière à ce qu'elle soit
@@ -75,37 +73,37 @@ Le circuit du modulateur sigma-delta est représenté
 	\label{fig:sigma-delta-circuit}
 \end{figure}
 
-On va résoudre ce circuit pour obtenir des équations
+La résolution de ce circuit permet d'obtenir des équations
 de la même forme que celles de la figure
 \ref{fig:sigma-delta-schema-blocs}.
-On se concentre d'abord sur l'amplificateur
-opérationnel. Grâce à la boucle de contre
-réaction négative, on peut dire $v_- = v_+ = 0$.
-On peut ensuite obtenir les courants suivants
+
+L'amplificateur opérationnel étant connecté en contre-réaction,
+sa bornée d'entrée est virtuellement à la masse : $v_- = v_+ = 0$.
+Les différents courants dans le circuit sont alors donnés par
 \[ i_{R_4} = \frac{V_{\text{ref}}}{R_4},\]
 \[ i_{R_6} = \frac{V_{\text{ee}}}{R_6},\]
 \[ i_{R_3} = \frac{V_{\text{out}}}{R_3},\]
 \[ i_{C_1} = -C_1\fdif{v_{\text{in}}}{t}.\]
-On applique ensuite KCL et on écrit
-\[ i_{C_1} = i_{R_4} + i_{R_6} + i_{R_3}.\]
-De cette relation, on tire
+KCL permet ensuite d'écrire l'équation suivante
+\[ i_{C_1} = i_{R_4} + i_{R_6} + i_{R_3}\]
+et donc d'obtenir
 \[ v_{\text{in}} = -\frac{1}{C_1}\int \frac{V_{\text{ref}}}{R_4}
 + \frac{V_{\text{ee}}}{R_6} + \frac{V_{\text{out}}}{R_3}.\]
+
 Pour se ramener à l'équation de la figure
-\ref{fig:sigma-delta-schema-blocs}, on pose
+\ref{fig:sigma-delta-schema-blocs}, on
 $V'_{\text{ref}} = -R_3(\frac{V_{\text{ref}}}{R_4}+\frac{V_{\text{ee}}}{R_6})$
 pour enfin obtenir
 \[ v_{\text{in}} = \frac{1}{C_1R_3} \int V'_{\text{ref}} - V_{\text{out}}\]
 où $V'_{\text{ref}}$ correspond au $V_{\text{ref}}$
 de la figure \ref{fig:sigma-delta-schema-blocs}.
 
-Pour dimensionner le modulateur, on doit respecter plusieurs
-contraintes. Premièrement la fréquence pour $V_{\text{ref}} =$
-\unit{7.5}{\volt} doit être de \unit{80}{\kilo\hertz}. Et deuxièment,
-on doit déplacer la parabole
+Pour dimensionner le modulateur, plusieurs contraintes doivent
+être respectées. Premièrement la fréquence maximale doit être
+de \unit{80}{\kilo\hertz}. Et deuxièment, la parabole doit s'étendre
 de manière à ce que ces racines soient \unit{-15}{\volt} et
-\unit{+15}{\volt}. Enfin, on doit choisir $\Delta V$ de manière
-à ce que la bascule ne soit pas sensible au bruit (quelques millivolts).
+\unit{+15}{\volt}. Enfin, $\Delta V$ doit être choisit de manière
+à ce que la bascule ne soit pas sensible au bruit.
 
 On va directement anticiper une non-idéalité de la bascule,
 la valeur de saturation $E$ n'est pas égale à la tension
