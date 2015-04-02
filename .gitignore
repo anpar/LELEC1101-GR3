@@ -107,3 +107,13 @@ sympy-plots-for-*.tex/
 
 # xindy
 *.xdy
+
+#Gimp file
+*.xcf
+
+#Gedit Temp file 
+*~
+
+#LTspice file
+*.net
+*.raw
