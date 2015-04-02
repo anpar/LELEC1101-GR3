@@ -25,7 +25,7 @@ correspond aux notes et aux dièses correspondantes.
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[scale=0.65]{kb-img/keyboard-circuit.png}
+	\includegraphics[scale=0.55]{kb-img/keyboard-circuit.png}
 	\caption{Circuit du clavier.}
 	\label{fig:keyboard-circuit}
 \end{figure}
@@ -35,7 +35,7 @@ La tension étiquetée \textbf{out} sur la figure
 du VCO, qui produira ensuite à sa sortie un signal
 périodique dont la fréquence est directement 
 proportionnelle à l'entrée, selon la convention
-\unit{1}{\milli\volt} $=$ \unit{1}{\hertz}. Cette
+\unit{1}{\milli\volt} correspond à \unit{1}{\hertz}. Cette
 tension $\text{out}$ est donnée par la formule 
 \[ \text{out} = E\frac{R_{2i}}{R_{2i} + R_1} \text{  avec  } i = 1\dots12. \]
 
@@ -73,13 +73,24 @@ risquent encore d'être amplifiées dans les blocs suivant du
 synthétiseur, il est donc préférable de les minimiser au maximum
 dans ce premier bloc.
 
+% TODO : a spliter en deux tableau (premier et deuxième réseau)
 \begin{table}[ht]
 	\centering
 		\begin{tabular}{|c|c|}
 			\hline
 				Résistance & Valeur (en\unit{}{\kilo\ohm}) \\
 			\hline
-				$R_{1}$ & 10 \\
+				$R_1$ & 10 \\
+			\hline
+				$R_a$ & 10 \\
+			\hline
+				$P_1$ & 10 \\
+			\hline
+				$P_2$ & 1 \\
+			\hline
+				$P_3$ & 1 \\
+			\hline
+				$P_3$ & 0.1 \\
 			\hline
 				$R_{21}$ & 82 | (15 + 0.390) \\
 			\hline
@@ -110,8 +121,41 @@ dans ce premier bloc.
 	\label{tab:keyboard-dim}
 \end{table}
 
-% TODO : ajouter le calcul de chaque tension out possible
-% avec l'erreur relative associé?
+\begin{table}[ht]
+	\centering
+		\begin{tabular}{|c|c|c|c|c|}
+			\hline
+				\specialcell{Octave $\rightarrow$ \\ Note $\downarrow$} & 5 & 6 & 7 & 8 \\
+			\hline
+				 C & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) \\
+			\hline
+				 C\# & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) \\
+			\hline
+				 D & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) \\
+			\hline
+				 D\# & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) \\
+			\hline
+				 E & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) \\
+			\hline
+				 F & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) \\
+			\hline
+				 F\# & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) \\
+			\hline
+				 G & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) \\
+			\hline
+				 G\# & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) \\
+			\hline
+				 A & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) \\
+			\hline
+				 A\# & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) \\
+			\hline
+				 B & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) \\
+			\hline
+		\end{tabular}
+	\caption{Résumé des mesures effectués avec erreur relative par rapport au résultat
+	théorique esperé.}
+	\label{tab:keyboard-measure-vs-theroy}
+\end{table}
 
 \biblio{keyboard}
 
