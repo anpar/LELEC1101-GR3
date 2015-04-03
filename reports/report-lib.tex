@@ -33,7 +33,7 @@
 % New commands
 \newcommand{\matlab}{\textsc{Matlab}}
 \newcommand{\annexe}{\part{Annexes}\appendix}
-\newcommand{\biblio}[1]{\bibliographystyle{plain}\bibliography{#1}\nocite{*}}
+\newcommand{\biblioreport}[1]{\bibliographystyle{plain}\bibliography{#1}\nocite{*}}
 \DeclareMathOperator{\newdiff}{d} % use \dif instead
 \newcommand{\dif}{\newdiff\!}
 \newcommand{\fpart}[2]{\frac{\partial #1}{\partial #2}}
@@ -41,6 +41,8 @@
 \newcommand{\fdpart}[3]{\frac{\partial^2 #1}{\partial #2\partial #3}}
 \newcommand{\fdif}[2]{\frac{\dif #1}{\dif #2}}
 \newcommand{\ffdif}[2]{\frac{\dif^2 #1}{\dif #2^2}}
+\newcommand{\specialcell}[2][c]{%
+  \begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
 
 \usepackage{color}
 \newenvironment{correction}

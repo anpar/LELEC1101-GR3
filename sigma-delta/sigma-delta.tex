@@ -2,23 +2,22 @@
 \doctitle{Dimensionnement du modulateur sigma-delta}
 
 \subsection{Fonctionnement et théorie}
-Le schéma bloc du modulateur sigma-delta se trouve
+Le schéma-bloc du modulateur sigma-delta se trouve
 à la figure \ref{fig:sigma-delta-schema-blocs}. Le
 modulateur du synthétiseur utilise une bascule asymétrique.
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[scale=0.75]{img-sigma-delta/schema-blocs.png}
+	\includegraphics[scale=0.7]{img-sigma-delta/schema-blocs.png}
 	\caption{Schéma bloc du modulateur sigma-delta.}
 	\label{fig:sigma-delta-schema-blocs}
 \end{figure}
 
 La période d'oscillation du signal de sortie (qui est 
 identique à la période d'oscillation du signal intermédiaire
-$V_I$ sur la figure \ref{fig:sigma-delta-schema-blocs}).
+$V_I$ sur la figure \ref{fig:sigma-delta-schema-blocs})
 se calcule en effectuant le raisonnement suivant.
-
-Initialement, soit $V_{\text{ref}}$  positif et
+Initialement, soit $V_{\text{ref}}$ positif et
 $V_{\text{out}} = 0$. $V_I$ est alors immédiatement positif
 et $V_{\text{out}}$ sature directement à $E$. Comme $V_{\text{ref}}$
 est $\leq E$, $V_I$ va maintenant décroître jusqu'à atteindre
@@ -28,10 +27,8 @@ et donc $V_I$ va croître jusqu'à atteindre 0, et ainsi de suite.
 De là s'obtiennent le temps de descente $t_f$ et le temps de montée $t_r$
 du signal $V_I$\footnote{Ce signal sera soit un signal triangulaire,
 soit un signal en dents de scie, selon la valeur de $V_{\text{ref}}$.}
-
 \[ t_f = -\frac{\Delta V}{(V_{\text{ref}} - E)K},\]
 \[ t_r = \frac{\Delta V}{KV_{\text{ref}}}.\]
-
 La période $T$ étant la somme du temps de descente et du temps
 de montée, elle est donnée par
 \[ T = \frac{\Delta V}{K}\left(\frac{1}{V_{\text{ref}}} - \frac{1}{V_{\text{ref}} - E}\right) \]
@@ -69,7 +66,7 @@ Le circuit du modulateur sigma-delta est représenté
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[scale=0.7]{img-sigma-delta/sigma-delta-circuit.png}
+	\includegraphics[scale=0.6]{img-sigma-delta/sigma-delta-circuit.png}
 	\caption{Circuit du modulateur.}
 	\label{fig:sigma-delta-circuit}
 \end{figure}
@@ -77,7 +74,6 @@ Le circuit du modulateur sigma-delta est représenté
 La résolution de ce circuit permet d'obtenir des équations
 de la même forme que celles de la figure
 \ref{fig:sigma-delta-schema-blocs}.
-
 L'amplificateur opérationnel étant connecté en contre-réaction,
 sa bornée d'entrée est virtuellement à la masse : $v_- = v_+ = 0$.
 Les différents courants dans le circuit sont alors donnés par
@@ -90,7 +86,6 @@ KCL permet ensuite d'écrire l'équation suivante
 et donc d'obtenir
 \[ v_{\text{in}} = -\frac{1}{C_1}\int \frac{V_{\text{ref}}}{R_4}
 + \frac{V_{\text{ee}}}{R_6} + \frac{V_{\text{out}}}{R_3}.\]
-
 Pour se ramener à l'équation de la figure
 \ref{fig:sigma-delta-schema-blocs}, on
 $V'_{\text{ref}} = -R_3(\frac{V_{\text{ref}}}{R_4}+\frac{V_{\text{ee}}}{R_6})$
@@ -130,7 +125,7 @@ choisir $R_1 =$ \unit{10}{\kilo\ohm} et $R_2 =$ \unit{134.6}{\kilo\ohm}.
 % TODO : on peut sans doute réaliser encore un meilleur
 % dimensionnement en considérant dans les calculs les valeurs
 % exactes (je veux dire par là les valeurs mesurées sur circuit,
-% pas les valeurs théoriques).
+% pas les valeurs théoriques) OU utiliser un système de calibrage
 
 Pour appliquer la signal de sortie du modulateur
 à l'étage suivant du circuit, il faudra utiliser un diviseur
@@ -145,7 +140,7 @@ du modulateur, nous obtenons la figure \ref{fig:sigma-delta-f-vs-vref-dim-vs-rea
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[scale=0.7]{img-sigma-delta/sigma-delta-f-vs-vref-dim-vs-real.png}
+	\includegraphics[scale=0.6]{img-sigma-delta/sigma-delta-f-vs-vref-dim-vs-real.png}
 	\caption{En bleu, les prévisions théoriques et en vert les mesures.}
 	\label{fig:sigma-delta-f-vs-vref-dim-vs-real}
 \end{figure}
