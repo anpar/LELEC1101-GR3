@@ -50,7 +50,9 @@ de potentiomètres à la place de simples résistances
 permet de ``calibrer'' le circuit afin de conserver
 une bonne précision (car en pratique l'alimentation
 ne vaut pas exactement \unit{15}{\volt}).
-% TODO : ajouter la valeur choisie pour les pots.
+Des valeurs de potentiomètres différentes sont utilisées
+afin de permettre un calibrage plus simple.
+
 Arbitrairement, $E$ vaut \unit{14}{\volt} pour l'octave
 8 et est divisé par 2 pour chaque octave inférieure.
 
@@ -82,15 +84,15 @@ dans ce premier bloc.
 			\hline
 				$R_1$ & 10 \\
 			\hline
-				$R_a$ & 10 \\
+				$R_a$ & 0.47 \\
 			\hline
 				$P_1$ & 10 \\
 			\hline
 				$P_2$ & 1 \\
 			\hline
-				$P_3$ & 1 \\
+				$P_3$ & 0.47 \\
 			\hline
-				$P_3$ & 0.1 \\
+				$P_4$ & 0.1 \\
 			\hline
 				$R_{21}$ & 82 | (15 + 0.390) \\
 			\hline
@@ -127,35 +129,48 @@ dans ce premier bloc.
 			\hline
 				\specialcell{Octave $\rightarrow$ \\ Note $\downarrow$} & 5 & 6 & 7 & 8 \\
 			\hline
-				 C & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) \\
+				 C & \unit{510}{\milli\volt} (\%) & \unit{1040}{\milli\volt} (\%) & \unit{2100}{\milli\volt} (\%) & \unit{4150}{\milli\volt} (\%) \\
 			\hline
 				 C\# & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) \\
 			\hline
-				 D & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) \\
+				 D &  \unit{570}{\milli\volt} (\%) & \unit{1180}{\milli\volt} (\%) & \unit{2390}{\milli\volt} (\%) & \unit{4720}{\milli\volt} (\%) \\
 			\hline
-				 D\# & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) \\
+				 D\# & \unit{590}{\milli\volt} (\%) & \unit{1240}{\milli\volt} (\%) & \unit{2510}{\milli\volt} (\%) & \unit{4950}{\milli\volt} (\%) \\
 			\hline
-				 E & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) \\
+				 E & \unit{640}{\milli\volt} (\%) & \unit{1305}{\milli\volt} (\%) & \unit{2640}{\milli\volt} (\%) & \unit{5200}{\milli\volt} (\%) \\
 			\hline
-				 F & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) \\
+				 F & \unit{680}{\milli\volt} (\%) & \unit{1390}{\milli\volt} (\%) & \unit{2790}{\milli\volt} (\%) & \unit{5500}{\milli\volt} (\%) \\
 			\hline
-				 F\# & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) \\
+				 F\# & \unit{720}{\milli\volt} (\%) & \unit{1470}{\milli\volt} (\%) & \unit{2950}{\milli\volt} (\%) & \unit{5840}{\milli\volt} (\%) \\
 			\hline
-				 G & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) \\
+				 G & \unit{770}{\milli\volt} (\%) & \unit{1560}{\milli\volt} (\%) & \unit{3140}{\milli\volt} (\%) & \unit{6180}{\milli\volt} (\%) \\
 			\hline
 				 G\# & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) \\
 			\hline
-				 A & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) \\
+				 A & \unit{860}{\milli\volt} (\%) & \unit{1750}{\milli\volt} (\%) & \unit{3510}{\milli\volt} (\%) & \unit{6940}{\milli\volt} (\%) \\
 			\hline
-				 A\# & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) \\
+				 A\# & \unit{915}{\milli\volt} (\%) & \unit{1850}{\milli\volt} (\%) & \unit{3730}{\milli\volt} (\%) & \unit{7380}{\milli\volt} (\%) \\
 			\hline
-				 B & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) & \unit{}{\milli\volt} (\%) \\
+				 B & \unit{970}{\milli\volt} (\%) & \unit{1960}{\milli\volt} (\%) & \unit{3960}{\milli\volt} (\%) & \unit{7790}{\milli\volt} (\%) \\
 			\hline
 		\end{tabular}
 	\caption{Résumé des mesures effectués avec erreur relative par rapport au résultat
-	théorique esperé.}
+	théorique esperé. Certaines lignes ont été laissées vides car nous n'avions pas les
+	bonnes résistances.}
 	\label{tab:keyboard-measure-vs-theroy}
 \end{table}
+
+Pour améliorer la précision du clavier, on peut :
+\begin{itemize}
+	\item Utiliser des potentiomètres à la place des combinaisons
+	de résistances, et calibrer le clavier avant chaque utilisation.
+	Cependant cette solution n'est ni économique (un potentiomètre
+	coûte beaucoup plus cher qu'une résistance) ni pratique (nécessitera
+	un long calibrage) ;
+	\item Utiliser des résistances plus précises ($\pm$ 1\% par exemple) ;
+	\item Mesurer chaque résistance utilisée et choisir celles dont la
+	valeur est la plus proche de celle indiquée.
+\end{itemize}
 
 \biblio{keyboard}
 
