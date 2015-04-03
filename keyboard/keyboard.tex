@@ -7,15 +7,6 @@ Le clavier permet de générer des fréquences allant de
 \unit{523.25}{\hertz} à \unit{7902.1}{\hertz} et couvre
 donc les octaves 5 à 8.
 
-%Pour construire ce clavier, deux types de boutons
-%sont nécessaires :
-%\begin{itemize}
-	%\item Un bouton poussoir normalement ouvert pour
-	%chaque note et sa dièse ;
-	%\item Un interrupteur à glissière à deux états pour
-	%gérer les différentes octaves.
-%\end{itemize}
-
 La figure \ref{fig:keyboard-circuit} représente le
 circuit du clavier. Le clavier est composé de deux
 réseaux de diviseurs résistifs. Le réseau constitué
@@ -25,14 +16,17 @@ correspond aux notes et aux dièses correspondantes.
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[scale=0.55]{kb-img/keyboard-circuit.png}
+	\includegraphics[scale=0.55]{img-keyboard/keyboard-circuit.png}
 	\caption{Circuit du clavier.}
 	\label{fig:keyboard-circuit}
 \end{figure}
 
 La tension étiquetée \textbf{out} sur la figure
 \ref{fig:keyboard-circuit} sera appliquée à l'entrée
-du VCO, qui produira ensuite à sa sortie un signal
+du VCO\footnote{Il est essentiel de prendre la tension à cet
+endroit, et non avant les interrupteurs. Cela permet au clavier
+de ne générer une tension non-nulle que quand une touche est pressée.},
+qui produira ensuite à sa sortie un signal
 périodique dont la fréquence est directement 
 proportionnelle à l'entrée, selon la convention
 \unit{1}{\milli\volt} correspond à \unit{1}{\hertz}. Cette
@@ -52,13 +46,12 @@ une bonne précision (car en pratique l'alimentation
 ne vaut pas exactement \unit{15}{\volt}).
 Des valeurs de potentiomètres différentes sont utilisées
 afin de permettre un calibrage plus simple.
-
 Arbitrairement, $E$ vaut \unit{14}{\volt} pour l'octave
 8 et est divisé par 2 pour chaque octave inférieure.
 
 La présence d'un amplificateur suiveur entre ce premier
 réseau de diviseurs résistifs et le suivant est indispensable
-pour éviter les ``interférences'' entre résistances.
+pour éviter les rendre indépendants.
 
 Le tableau \ref{tab:keyboard-dim} résume le dimensionnement
 du clavier. Seules les valeurs standard de la série de Renard
@@ -123,41 +116,48 @@ dans ce premier bloc.
 	\label{tab:keyboard-dim}
 \end{table}
 
+Le tableau \ref{tab:keyboard-measure-vs-theory} donne quant
+à lui les valeurs mesurées de la tension out avec l'erreur
+relative par rapport à la tension esperée. Les imprécisions
+s'expliquent par les imprécisions des résistances et/ou du
+calibrage.
+
 \begin{table}[ht]
 	\centering
 		\begin{tabular}{|c|c|c|c|c|}
 			\hline
 				\specialcell{Octave $\rightarrow$ \\ Note $\downarrow$} & 5 & 6 & 7 & 8 \\
 			\hline
-				 C & \unit{510}{\milli\volt} (\%) & \unit{1040}{\milli\volt} (\%) & \unit{2100}{\milli\volt} (\%) & \unit{4150}{\milli\volt} (-0.86\%) \\
+				 C & \unit{510}{\milli\volt} (-2.53\%) & \unit{1040}{\milli\volt} (-0.62\%) & \unit{2100}{\milli\volt} (+0.33\%) & \unit{4150}{\milli\volt} (-0.86\%) \\
 			\hline
 				 C\# & / & / & / & / \\
 			\hline
-				 D &  \unit{570}{\milli\volt} (\%) & \unit{1180}{\milli\volt} (\%) & \unit{2390}{\milli\volt} (\%) & \unit{4720}{\milli\volt} (+0.45\%) \\
+				 D &  \unit{570}{\milli\volt} (-2.95\%) & \unit{1180}{\milli\volt} (+0.45\%) & \unit{2390}{\milli\volt} (+1.73\%) & \unit{4720}{\milli\volt} (+0.45\%) \\
 			\hline
-				 D\# & \unit{590}{\milli\volt} (\%) & \unit{1240}{\milli\volt} (\%) & \unit{2510}{\milli\volt} (\%) & \unit{4950}{\milli\volt} (-0.56\%) \\
+				 D\# & \unit{590}{\milli\volt} (-5.18\%) & \unit{1240}{\milli\volt} (-0.36\%) & \unit{2510}{\milli\volt} (+0.84\%) & \unit{4950}{\milli\volt} (-0.56\%) \\
 			\hline
-				 E & \unit{640}{\milli\volt} (\%) & \unit{1305}{\milli\volt} (\%) & \unit{2640}{\milli\volt} (\%) & \unit{5200}{\milli\volt} (-1.40\%) \\
+				 E & \unit{640}{\milli\volt} (-2.92\%) & \unit{1305}{\milli\volt} (-1.02\%) & \unit{2640}{\milli\volt} (+0.11\%) & \unit{5200}{\milli\volt} (-1.40\%) \\
 			\hline
-				 F & \unit{680}{\milli\volt} (\%) & \unit{1390}{\milli\volt} (\%) & \unit{2790}{\milli\volt} (\%) & \unit{5500}{\milli\volt} (-1.56\%) \\
+				 F & \unit{680}{\milli\volt} (-2.64\%) & \unit{1390}{\milli\volt} (-0.49\%) & \unit{2790}{\milli\volt} (-0.14\%) & \unit{5500}{\milli\volt} (-1.56\%) \\
 			\hline
-				 F\# & \unit{720}{\milli\volt} (\%) & \unit{1470}{\milli\volt} (\%) & \unit{2950}{\milli\volt} (\%) & \unit{5840}{\milli\volt} (-1.35\%) \\
+				 F\# & \unit{720}{\milli\volt} (-2.70\%) & \unit{1470}{\milli\volt} (-0.67\%) & \unit{2950}{\milli\volt} (-0.34\%) & \unit{5840}{\milli\volt} (-1.35\%) \\
 			\hline
-				 G & \unit{770}{\milli\volt} (\%) & \unit{1560}{\milli\volt} (\%) & \unit{3140}{\milli\volt} (\%) & \unit{6180}{\milli\volt} (-1.46\%) \\
+				 G & \unit{770}{\milli\volt} (-1.78\%) & \unit{1560}{\milli\volt} (-0.51\%) & \unit{3140}{\milli\volt} (+0.13\%) & \unit{6180}{\milli\volt} (-1.46\%) \\
 			\hline
 				 G\# & / & / & / & / \\
 			\hline
-				 A & \unit{860}{\milli\volt} (\%) & \unit{1750}{\milli\volt} (\%) & \unit{3510}{\milli\volt} (\%) & \unit{6940}{\milli\volt} (-1.42\%) \\
+				 A & \unit{860}{\milli\volt} (-2.27\%) & \unit{1750}{\milli\volt} (-0.57\%) & \unit{3510}{\milli\volt} (-0.28\%) & \unit{6940}{\milli\volt} (-1.42\%) \\
 			\hline
-				 A\# & \unit{915}{\milli\volt} (\%) & \unit{1850}{\milli\volt} (\%) & \unit{3730}{\milli\volt} (\%) & \unit{7380}{\milli\volt} (-1.05\%) \\
+				 A\# & \unit{915}{\milli\volt} (-1.86\%) & \unit{1850}{\milli\volt} (-0.79\%) & \unit{3730}{\milli\volt} (+0.02\%) & \unit{7380}{\milli\volt} (-1.05\%) \\
 			\hline
-				 B & \unit{970}{\milli\volt} (\%) & \unit{1960}{\milli\volt} (\%) & \unit{3960}{\milli\volt} (\%) & \unit{7790}{\milli\volt} (-1.42\%) \\
+				 B & \unit{970}{\milli\volt} (-1.79\%) & \unit{1960}{\milli\volt} (-0.78\%) & \unit{3960}{\milli\volt} (+0.22\%) & \unit{7790}{\milli\volt} (-1.42\%) \\
 			\hline
 		\end{tabular}
 	\caption{Résumé des mesures effectués avec erreur relative par rapport au résultat
 	théorique esperé. Certaines lignes ont été laissées vides car nous n'avions pas les
-	bonnes résistances.}
-	\label{tab:keyboard-measure-vs-theroy}
+	bonnes résistances. Les erreurs relatives ont été calculées par comparaison avec
+	le tableau suivant \url{http://en.wikipedia.org/wiki/Scientific_pitch_notation\#Table_of_note_frequencies}.}
+	\label{tab:keyboard-measure-vs-theory}
 \end{table}
 
 Pour améliorer la précision du clavier, on peut :
@@ -168,8 +168,8 @@ Pour améliorer la précision du clavier, on peut :
 	coûte beaucoup plus cher qu'une résistance) ni pratique (nécessitera
 	un long calibrage) ;
 	\item Utiliser des résistances plus précises ($\pm$ 1\% par exemple) ;
-	\item Mesurer chaque résistance utilisée et choisir celles dont la
-	valeur est la plus proche de celle indiquée.
+	\item Mesurer chaque résistance utilisée et remplacer celles dont la
+	valeur est trop imprécise par une autre plus précise.
 \end{itemize}
 
 \biblio{keyboard}

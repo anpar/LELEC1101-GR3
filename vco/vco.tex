@@ -4,7 +4,7 @@
 La figure \ref{fig:schema_bloc_vco} nous montre le schéma bloc du VCO.
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.4\textwidth]{img/schema_bloc_vco.png}
+	\includegraphics[width=0.4\textwidth]{img-vco/schema_bloc_vco.png}
 	\caption{Schéma bloc du VCO}
 	\label{fig:schema_bloc_vco}
 \end{figure}
@@ -26,7 +26,7 @@ La fréquence générée par le VCO pour une tension d'entrée donnée ($\alpha$
 Sur la figure \ref{fig:circuit_vco} se trouve l'implémentation électronique du VCO décrit ci-dessus.
 \begin{figure}[ht]
 \centering
-\includegraphics[width=16cm]{img/vco_circuit}
+\includegraphics[width=16cm]{img-vco/vco_circuit}
 \caption{Circuit du VCO}
 \label{fig:circuit_vco}
 \end{figure}
@@ -50,7 +50,7 @@ Fixons $R_5$ à \unit{1}{\kilo\ohm}. Alors $R_4$ vaut \unit{1}{\kilo\ohm} et $R_
 %TODO
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.8\textwidth]{img/vco_response.png}
+	\includegraphics[width=0.8\textwidth]{img-vco/vco_response.png}
 	\caption{Simulation des signaux de sortie des différents blocs}
 	\label{fig:out_vco_th}
 \end{figure}
@@ -58,7 +58,7 @@ La figure \ref{fig:out_vco_th} affiche la simulation des signaux aux sorties des
 
 \begin{figure}[ht]                                       
 	\centering
-	\includegraphics[width=0.8\textwidth]{img/vco_real_out.png}
+	\includegraphics[width=0.8\textwidth]{img-vco/vco_real_out.png}
 	\caption{Sortie des différens blocs. De gauche à droite. Sortie de l'integrator, sortie du trigger et sortie de l'integrator controller}
 	\label{fig:out_vco_real}
 \end{figure}
@@ -67,7 +67,7 @@ La figure \ref{fig:out_vco_real} montre ces mêmes signaux aux sorties de circui
 %La figure \ref{fig:theory_vs_mesure} montre que la réalité est la théorie sont très proche. Les différences observées sont dues à des imprécisions des valeurs des résistances et des capacités. Cela provient aussi du switch qui contrairement au modèle utilisé dans les simulations et les calculs possède une légère courbe d'hystérèse.
 %\begin{figure}
 %	\centering
-%	\includegraphics[scale=0.7]{img/vco_vs_reality.png}
+%	\includegraphics[scale=0.7]{img-vco/vco_vs_reality.png}
 %	\caption{ Théroie Vs. mesures}
 %	\label{fig:theory_vs_mesure}
 %\end{figure}
