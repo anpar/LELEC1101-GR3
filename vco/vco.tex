@@ -54,14 +54,15 @@ Fixons $R_5$ à \unit{1}{\kilo\ohm}. Alors $R_4$ vaut \unit{1}{\kilo\ohm} et $R_
 	\caption{Simulation des signaux de sortie des différents blocs}
 	\label{fig:out_vco_th}
 \end{figure}
-La figure \ref{fig:out_vco_th} affiche la simulation des signaux aux sorties des trois blocs fonctionnels pour une tension d'entrée de \unit{500}{\milli\volt}. Le signal à la sortie de l'integrator controller est affiché en vert et le signal à la sortie du bloc intégrator bleu. Ce signal est également le signal de sortie finale du VCO. Pour terminer, le signal à la sortie du trigger est affiché en rouge.
+La figure \ref{fig:out_vco_th} affiche la simulation des signaux aux sorties des trois blocs fonctionnels pour une tension d'entrée de \unit{500}{\milli\volt}. Le signal à la sortie de l'integrator controller est affiché en vert et le signal à la sortie du bloc intégrator en bleu. Ce signal est également le signal de sortie finale du VCO. Pour terminer, le signal à la sortie du trigger est affiché en rouge.
+
 \begin{figure}[ht]                                       
 	\centering
 	\includegraphics[width=0.8\textwidth]{img/vco_real_out.png}
 	\caption{Sortie des différens blocs. De gauche à droite. Sortie de l'integrator, sortie du trigger et sortie de l'integrator controller}
 	\label{fig:out_vco_real}
 \end{figure}
-La figure \ref{fig:out_vco_real} montre les même signaux que la figure \ref{fig:out_vco_th} mais effectuée sur le circuit réel pour une tension d'entrée de 500 mV. Les différences entre les deux sont très faibles mise à part la sortie du bloc integrator controller qui en descente ne passe pas directement de on à off mais le fait progressivement. Cela provient d'un effet capacitif au niveau du switch. Si la fréquence augmente, cet effet modifie complètement la réponse en fréquence du VCO.
+La figure \ref{fig:out_vco_real} montre ces mêmes signaux aux sorties de circuit réel pour une tension d'entrée de \unit{500}{\milli\volt}. Les différences entre les deux sont très faibles excepté la sortie du bloc integrator controller qui en descente ne passe pas directement de on à off mais le fait progressivement. Cela ressemble à un effet capacitif au niveau du switch. Si la fréquence augmente, cet effet modifie complètement la réponse en fréquence du VCO.
 
 %La figure \ref{fig:theory_vs_mesure} montre que la réalité est la théorie sont très proche. Les différences observées sont dues à des imprécisions des valeurs des résistances et des capacités. Cela provient aussi du switch qui contrairement au modèle utilisé dans les simulations et les calculs possède une légère courbe d'hystérèse.
 %\begin{figure}
