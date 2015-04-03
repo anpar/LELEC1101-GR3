@@ -1,6 +1,23 @@
 \input{../lib.tex}
 \doctitle{Le filtre}
+Le filtre utilise la propriété des diodes de ne laisser passer 
+le courant qu'à partie d'une certaine tension. Grâce à cela,
+l'on peut faire un diviseur de tension qui varie en fonction 
+de la tension lui étant appliquée. 
 
-% TODO
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale=0.4]{img-filter/filter-circuit.jpg}
+	\caption{Circuit du filtre.}
+	\label{fig:filter-spice-graph}
+\end{figure}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale=0.3]{img-filter/filter-spice-graph.jpg}
+	\caption{Simulation du filtre. En vert l'entrée triangulaire. La
+	sortie est superposée (et confondue) à un vrai sinus.}
+	\label{fig:filter-spice-graph}
+\end{figure}
 
 \input{../footer.tex}
