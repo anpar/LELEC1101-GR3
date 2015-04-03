@@ -1,9 +1,13 @@
 \input{../lib.tex}
 \doctitle{L'oscillateur contrôlé en tension (VCO)}
 \subsection{Fonctionnement et théorie}
-La figure 1 nous montre le schéma bloc du VCO.
-                                                                                                                                                                   
-
+La figure \ref{fig:schema_bloc_vco} nous montre le schéma bloc du VCO.
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.4\textwidth]{img/schema_bloc_vco.png}
+	\caption{Schéma bloc du VCO}
+	\label{fig:schema_bloc_vco}
+\end{figure}
 Le VCO se compose des 3 blocs suivants:
 \begin{itemize}
 \item l'integrator controller (le contrôleur de l'intégrateur) qui se compose lui-même d'un switch et d'un summing (sommateur)
@@ -55,7 +59,7 @@ Sur la figure \ref{fig:out_vco_th} se trouve les signaux aux sorties des trois b
 	\caption{Sortie des différens blocs. De gauche à droite. Sortie de l'integrator, sortie du trigger et sortie de l'integrator controller}
 	\label{fig:out_vco_real}
 \end{figure}
-La figure \ref{fig:out_vco_real}montre les même signaux que la figure \ref{fig:out_vco_th} mais effectuée sur le circuit réel pour une tension d'entrée de 500 mV. Les différences entre les deux sont très faibles mise à part la sortie du bloc integrator controller qui en descente ne passe pas directement de on à off mais le fait progressivement. Cela provient du switch qui ne s'ouvre pas d'un coup.
+La figure \ref{fig:out_vco_real} montre les même signaux que la figure \ref{fig:out_vco_th} mais effectuée sur le circuit réel pour une tension d'entrée de 500 mV. Les différences entre les deux sont très faibles mise à part la sortie du bloc integrator controller qui en descente ne passe pas directement de on à off mais le fait progressivement. Cela provient du switch qui ne s'ouvre pas d'un coup.
 
 La figure \ref{fig:theory_vs_mesure} montre que la réalité est la théorie sont très proche. Les différences observées sont dues à des imprécisions des valeurs des résistances et des capacités. Cela provient aussi du switch qui contrairement au modèle utilisé dans les simulations et les calculs possède une légère courbe d'hystérèse.
 \begin{figure}
