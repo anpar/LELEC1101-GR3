@@ -4,17 +4,17 @@ vref = linspace(-15,15,1000);
 Vee = -15; %-14.63;
 % On tient compte de la non-idéalité
 % E neq Vcc.
-E = 13.62; %13.5
+E = 13.5;%13.62;
 % On utilise uniquement des valeurs de
 % de la série de Renard E12.
 % C1 : deux capa en parallèle, diffère de 0.03
 % par rapport à la théorie.
-C1 = 1/(1/(3.3e-9) + 1/(4.7e-9)) ;
-R1 = 10000;
-R2 = 82000+47000+5600;
-R3 = 22000;
-R4 = 47000+1500;
-R6 = 47000+1500;
+C1 = 18e-9;%1/(1/(3.3e-9) + 1/(4.7e-9)) ;
+R1 = (3900*(100+2200))/(3900+100+2200);%10000;
+R2 = 10000;%82000+47000+5600;
+R3 = 1200;%22000;
+R4 = 2666.6666;%47000+1500;
+R6 = 2666.6666;%47000+1500;
 K = 1/(R3*C1)
 DV = R1/R2 * E;
 VREF = -R3*(vref/R4 + Vee/R6);
