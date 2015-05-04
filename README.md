@@ -8,4 +8,5 @@ A faire :
 
 Matériel manquant :
 - Résistance de 56ohms.
+- Potentiomètre de 470ohms (l'autre ayant été assassiné froidement par une patte de résistance).
 - Potentiomètre de 50kohms.
