@@ -1,6 +1,6 @@
 \input{../lib.tex}
 \doctitle{L'oscillateur contrôlé en tension (VCO)}
-\subsection{Fonctionnement et théorie}
+\section{Fonctionnement et théorie}
 La figure \ref{fig:schema_bloc_vco} montre le schéma-bloc du VCO.
 
 \begin{figure}[ht]
@@ -12,7 +12,8 @@ La figure \ref{fig:schema_bloc_vco} montre le schéma-bloc du VCO.
 
 Le VCO est composé des 3 blocs suivants :
 \begin{itemize}
-	\item le contrôleur de l'intégrateur (\textit{integrator controller} sur la figure \ref{fig:schema_bloc_vco}) qui se compose lui-même d'un switch et d'un sommateur (summing sur la figure);
+	\item le contrôleur de l'intégrateur (\textit{integrator controller} sur la figure 
+	\ref{fig:schema_bloc_vco}) qui se compose lui-même d'un switch et d'un sommateur (summing sur la figure);
 	\item l'intégrateur (integrator sur la figure) ;
 	\item le trigger de Schmitt (bascule à hystérèse).
 \end{itemize}
@@ -36,7 +37,7 @@ La fréquence générée par le VCO pour une tension d'entrée $\alpha$ s'exprim
 en fonction de $K$ et de $\Delta V = \vert V_H - V_L\vert $ par la relation 
 \[ f = \frac{K\alpha}{2\Delta V}. \]
 
-\subsection{Dimensionnement et circuit réel}
+\section{Dimensionnement et circuit réel}
 \paragraph{Circuit réel}
 Sur la figure \ref{fig:circuit_vco} se trouve l'implémentation électronique du VCO décrit ci-dessus.
 
@@ -85,7 +86,7 @@ une relation entre les résistances est obtenue en appliquant KCL :
 Cela donne donc $R_5 = R_4 = 2R_3$. En prenant $R_5 =$ \unit{1}{\kilo\ohm}, $R_4$ vaut \unit{1}{\kilo\ohm}
 et $R_3$ vaut \unit{2}{\kilo\ohm}.
 
-\subsection{Confrontation  des mesures et de la théorie}
+\section{Confrontation  des mesures et de la théorie}
 % TODO
 \begin{figure}[ht]
 	\centering
