@@ -1,4 +1,111 @@
 \input{../lib.tex}
-\doctitle{Assemblage}
+\usepackage{array}
+\doctitle{Système global}
+Après avoir décrit chaque bloc de façon individuelle, il est nécessaire d'observer le système dans son ensemble afin de pouvoir valider, ou non, son bon fonctionnement. 
 
+\section{Assemblage}
+Il est important que chacun des blocs se comportent au sein
+du système global comme défini dans les sections précédentes, 
+autrement dit : que les blocs n'interfèrent pas entre eux.
+Pour cela, il est possible d'ajouter des amplificateurs 
+opérationnels en suiveur\footnote{Idéalement, les amplificateurs opérationnels
+ont une impédance d'entrée infinie et une impédance de sortie nulle.} 
+entre les blocs afin d'assurer une liaison imperméable. 
+%Le premier se trouve entre le filtre sinusoïdale
+%et le sigma-delta. En effet, la résistance équivalente du
+%sigma-delta n'est pas infini et interfère donc avec le filtre
+%si il ne sont pas isolés à l'aide d'un suiveur.
+%Les autres blocs ne nécessitent pas d'étage tampon en vue
+%de leurs agencements individuels
+
+\section{Validation}
+Afin de valider le circuit de façon globale le tableau ci
+dessous met en évidence l'erreur en fréquence et le taux de
+distortion harmonique observés à la sortie du filtre pour
+diverses notes jouées.La validation du sigma-delta est
+effectuée grâce à une application \testsc{Android} permettant de
+mesurer la fréquence d'un signal audio. Ceci a été effectué
+pour l'ensemble des notes, mais le tableaux ne reprend que
+quelques valeurs significatives et les maximas. Le clavier a
+été calibré avant la prise de mesure.
+
+\begin{table}
+	\centering
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		Clavier &  \multicolumn{2}{c|}{Filtre} &  Sortie audio \\
+		 \hline
+		Note &  Erreur fréquence (\%) & TDH (\%) &  Erreur fréquence (\%) \\
+		\hline
+		D5 &  -4.1 & 1.55 & -3.8\\
+		B5 &  2.9 & 2.26 & 3.2\\
+		F6 &  1.6 & 1.92 & 1.3\\
+		F7 &  0.9 & 2.02 & 1.5\\
+		C8 &  0.3 & 2.08 & 0.2\\
+		F8 &  2.3 & 1.29 & 2.1\\
+		\hline
+	\end{tabular}
+	\caption{Tableau de validation du système global.}
+	\label{tab:tab-global}
+\end{table}
+
+Cette partie du système remplit bien son rôle. L'erreur en 
+fréquence se trouve dans une gamme raisonnable (de -3.8\% à 3.2\%)
+sur l'ensemble de la gamme fréquentielle couverte. Les notes 
+correspondent donc chaque fois à la note souhaitée, et non à celle
+supérieure ou inférieure.
+Quant au taux de distortion harmonique, il ne dépasse pas 2.8\%.
+
+Des 'glitchs' apparaissent sur l'ensemble du circuit et ce à 
+même fréquence que la fréquence de sortie du sigma-delta. Ceci est dû au fait que
+le sigma delta pompe du courant à la source par à coup. Cela ne modifie
+que légèrement la qualité du système.
+
+\section{Pistes d'amélioration}
+La conception et la mise en oeuvre de chaque bloc ont été effectué
+de manière locale et non globale, des blocs
+intermédiaires (adaptateurs) ont dû être ajouté en conséquence. Une vision plus
+globale dès le début du projet aurait permis une simplifaction du
+système final ainsi qu'une diminution du nombre de composants et
+donc de puissance utilisée et d'erreurs possibles.
+
+En pratique, il aurait été possible de modifier la gamme de sortie
+du VCO afin que celle-ci corresponde à l'entrée du filtre (
+triangle entre \unit{-3}{\volt} et \unit{+3}{\volt}), et donc 
+supprimer l'adaptateur. Il faut pour cela modifier les seuils
+de basculements de la bascule à hystérèse afin qu'ils soient de
+\unit{-3}{\volt} et \unit{+3}{\volt}, et ensuite adapter la
+constante d'intégration pour que le lien amplitude d'entrée/fréquence
+de sortie soit toujours respecté. D'un point de vue circuit, il s'agit
+donc de changer les résistances caractéristiques de la basucle, et le
+condensateur nécessaire à l'intégration. Réaliser l'opération inverse,
+c'est-à-dire modifier les caractéristiques du filtre afin qu'il accepte
+en entrée un signal correspondant à la sortie actuelle du VCO 
+(triangle entre \unit{-1}{\volt} et \unit{0}{\volt}) n'aurait pas été 
+possible étant donné la conception de celui-ci (voir section \ref{sec:filtre}). 
+Pour cela, il est nécessaire de concevoir un nouveau filtre.
+
+Il est également possible de réaliser un clavier dont la sortie serait directement
+liée à la masse lorsqu'aucune touche n'est enfoncée, sans nécéssiter un comparateur
+et un switch. Cependant cette solution nous échappe encore.ytred
+
+Comme mis en avant dans la section \ref{sec:sigma-delta} concernant le
+sigma-delta, le bloc 'sigma-delta' actuel n'utilise qu'une mince zone
+de fréquence de commutation. En effet, il serait possible de diminuer
+les racines de la parabole de la figure \ref{fig:sigma-delta-lim}, 
+afin que la zone de fréquence atteignable pour le signal d'entrée 
+(compris entre \unit{-3}{\volt} et \unit{3}{\volt})
+soit plus importante toute en s'assurant que la fréquence minimale
+atteinte soit au-delà de la fréquence de Shannon (\unit{16}{\kilo\hertz} dans
+notre cas). Il suffit de fixer judicieusement les deux tensions d'entrée qui produisent
+en sortie un signal dont la fréquence correspond à la fréquence de Shannon. 
+Ces points pourraient être fixés à \unit{-4}{\volt} et \unit{4}{\volt}
+afin de garder une marge d'erreur. La contrainte sur la fréquence
+de sortie maximale reste identique.
+Ces trois points donne l'équation de la nouvelle parabole. Une plus 
+grande zone de fréquence de commutation permet une meilleure reconstitution
+du signal d'entrée.
+
+Concernant les 'glitchs' observés, l'unique solution est d'utiliser deux 
+sources d'alimentation distinctes : une pour le sigma-delta, et une pour le reste du circuit.
 \input{../footer.tex}
