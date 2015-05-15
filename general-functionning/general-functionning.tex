@@ -6,8 +6,8 @@ est divisé en 3 blocs principaux (voir figure \ref{fig:gf-global}).
 
 \begin{figure}[ht]
 	\centering
-%	\includegraphics[scale=0.6]{img-gf/gf-global.png}
-	\caption{Schéma blocs global du synthétiseur.}
+	\includegraphics[scale=0.6]{img-gf/gf-global.png}
+	\caption{Schéma blocs global du synthétiseur (source : Bruno Dehez.}
 	\label{fig:gf-global}
 \end{figure}
 
@@ -30,12 +30,12 @@ transformera ce signal triangulaire en signal sinusoïdal
 qu'un signal en dents de scie ou un signal carré. En effet, filtrer
 de tels signaux pour obtenir un signal sinusoïdal engendrera
 une plus grande perte de puissance qu'à partir d'un signal
-triangulaire.}. % FIXME : footnote à confirmer.
+triangulaire.}.
 
 \begin{figure}[ht]
 	\centering
-%	\includegraphics[scale=0.6]{img-gf/gf-generator.png}
-	\caption{Schéma-bloc du générateur d'onde.}
+	\includegraphics[scale=0.6]{img-gf/gf-generator.png}
+	\caption{Schéma-bloc du générateur d'onde (source : Bruno Dehez).}
 	\label{fig:gf-generator}
 \end{figure}
 
@@ -44,9 +44,9 @@ va falloir l'appliquer en entrée d'un haut-parleur. Mais avant
 cela, il va falloir l'amplifier. Pour ce faire, nous allons
 utiliser un amplificateur de classe D (voir figure
 \ref{fig:gf-ampli}). Un tel amplificateur
-a	un très bon rendement, il consomme peu de puissance. Cependant,
+a un très bon rendement, il consomme peu de puissance. Cependant,
 pour que cet amplificateur fonctionne correctement, il faut
-lui appliquer un signal carré en entrée. Pour transformer
+lui appliquer un signal carré avec une tension basse nulle en entrée. Pour transformer
 notre signal sinusoïdal en signal carré, nous allons utiliser un
 système de modulation de largeur d'impulsion (ou MLI). Le MLI
 transforme son entrée sinusoïdale en un signal carré dont la
@@ -55,11 +55,12 @@ signal carré est ensuite amplifié par l'étage de puissance
 et filtré afin d'obtenir à nouveau un signal sinusoïdal que
 l'on pourra cette fois directement appliqué en entrée du haut-parleur.
 
-\begin{figure}[ht]
-	\centering
-%	\includegraphics[scale=0.55]{img-gf/gf-ampli.png}
-	\caption{Schéma blocs de l'amplificateur.}
-	\label{fig:gf-ampli}
-\end{figure}
+% N'apportait rien selon Claude Oestges
+%\begin{figure}[ht]
+	%\centering
+	%\includegraphics[scale=0.55]{img-gf/gf-ampli.png}
+	%\caption{Schéma blocs de l'amplificateur (source : Bruno Dehez).}
+	%\label{fig:gf-ampli}
+%\end{figure}
 
 \input{../footer.tex}

@@ -1,8 +1,8 @@
 \input{../lib.tex}
 \doctitle{L'oscillateur contrôlé en tension (VCO)}
-\subsection{Rôle}
+\section{Rôle}
 Le VCO est la partie qui s'occupe de générer un signal alternatif à partir d'une tension continue. La fréquence du signal généré dépend de manière linéaire à la tension d'entrée avec comme relation tension-fréquence : \unit{1}{\milli\volt} correspond à \unit{1}{\hertz}.
-\subsection{Fonctionnement et théorie}
+\section{Fonctionnement et théorie}
 La figure \ref{fig:schema_bloc_vco} montre le schéma-bloc du VCO.
 
 \begin{figure}[ht]
@@ -39,7 +39,7 @@ en fonction de $K$ et de $\Delta V = \vert V_H - V_L\vert $ par la relation
 L'amplitude du signal généré par le VCO est compris entre $V_H$ et $V_L$.
 
 
-\subsection{Dimensionnement et circuit réel}
+\section{Dimensionnement et circuit réel}
 \paragraph{Circuit réel}
 Sur la figure \ref{fig:circuit_vco} se trouve l'implémentation électronique du VCO décrit ci-dessus.
 
@@ -87,7 +87,7 @@ une relation entre les résistances est obtenue en appliquant KCL :
 Cela donne donc $R_5 = R_4$. En prenant $R_5 =$ \unit{1}{\kilo\ohm}, $R_4$ vaut \unit{1}{\kilo\ohm}
 et $R_3$ vaut \unit{10}{\kilo\ohm}.
 
-\subsection{Confrontation  des mesures et de la théorie}
+\section{Confrontation  des mesures et de la théorie}
 % TODO
 %\begin{figure}[ht]
 %	\centering
