@@ -1,5 +1,7 @@
 \input{../lib.tex}
 \doctitle{L'oscillateur contrôlé en tension (VCO)}
+\section{Rôle}
+Le VCO est la partie qui s'occupe de générer un signal alternatif à partir d'une tension continue. La fréquence du signal généré dépend de manière linéaire à la tension d'entrée avec comme relation tension-fréquence : \unit{1}{\milli\volt} correspond à \unit{1}{\hertz}.
 \section{Fonctionnement et théorie}
 La figure \ref{fig:schema_bloc_vco} montre le schéma-bloc du VCO.
 
@@ -12,18 +14,16 @@ La figure \ref{fig:schema_bloc_vco} montre le schéma-bloc du VCO.
 
 Le VCO est composé des 3 blocs suivants :
 \begin{itemize}
-	\item le contrôleur de l'intégrateur (\textit{integrator controller} sur la figure 
-	\ref{fig:schema_bloc_vco}) qui se compose lui-même d'un switch et d'un sommateur (summing sur la figure);
-	\item l'intégrateur (integrator sur la figure) ;
+	\item le contrôleur de l'intégrateur qui se compose lui-même d'un switch et d'un sommateur.
+	\item l'intégrateur.
 	\item le trigger de Schmitt (bascule à hystérèse).
 \end{itemize}
 
 Le signal d'entrée $in$ est constant et vaut $\alpha$. Soient $V_L$ la
 tension de basculement inférieure du trigger, $V_H$ la tension de 
 basculement supérieure et $V_{CC}$ la tension d'alimentation du trigger.
-Si la sortie du trigger de Schmitt ($control$ sur la figure \ref{fig:schema_bloc_vco}) 
-vaut $0$, la sortie du switch vaut $0$. Dès lors, la sortie du bloc
-integrator controller vaut $-\alpha$. Après passage dans l'intégrateur, nous avons la 
+Si la sortie du trigger de Schmitt (\textit{contrôle} sur la figure \ref{fig:schema_bloc_vco}) 
+vaut $0$, la sortie du switch vaut $0$. Dès lors, la sortie du bloc contrôleur de l'intégrateur vaut $-\alpha$. Après passage dans l'intégrateur, nous avons la 
 droite $-K\alpha t$ avec $K$ la constante de temps de l'intégrateur. La sortie du trigger
 restera à $0$ tant que la sortie de l'intégrateur est supérieure à $V_L$. Lorsque la sortie
 de l'intégrateur atteint $V_L$, le trigger bascule et sa tension de sortie devient $V_{CC}$. 
@@ -36,6 +36,8 @@ $0$. Le switch change à nouveau d'état, sa sortie devient $0$ et le cycle reco
 La fréquence générée par le VCO pour une tension d'entrée $\alpha$ s'exprime 
 en fonction de $K$ et de $\Delta V = \vert V_H - V_L\vert $ par la relation 
 \[ f = \frac{K\alpha}{2\Delta V}. \]
+L'amplitude du signal généré par le VCO est compris entre $V_H$ et $V_L$.
+
 
 \section{Dimensionnement et circuit réel}
 \paragraph{Circuit réel}
@@ -59,7 +61,7 @@ Dans ce circuit, un trigger asymétrique est utilisé. Dès lors, le rapport
 des résistances à utiliser se déduit des formules suivantes : 
 \[ V_H = V_{REF}\left(1+\frac{R_2}{R_6}\right) \text{ et } V_L = V_{REF} + \frac{R_2}{R_6}\left(V_{REF}-V_{CC}\right). \]
 Dans le montage du trigger asymétrique utilisé, $V_{REF}$, la tension à l'entrée
-non-inverseuse du comparateur vaut \unit{0}{\volt}. Dès lors, $\frac{R_2}{R_6}=\frac{1}{15}$
+inverseuse du comparateur vaut \unit{0}{\volt}. Dès lors, $\frac{R_2}{R_6}=\frac{1}{15}$
 avec la condition que $R_6 >> R_9$. Les valeurs de résistances choisies sont :
 
 \begin{itemize}
@@ -68,53 +70,37 @@ avec la condition que $R_6 >> R_9$. Les valeurs de résistances choisies sont :
 \end{itemize}
 
 \paragraph{Dimensionnement de l'intégrateur}
-Calculons maintenant la constante ($K$) du bloc intégrateur. Le VCO doit satisfaire
-la relation tension-fréquence suivante : \unit{1}{\milli\volt} correspond à \unit{1}{\hertz}. 
+Calculons maintenant la constante ($K$) du bloc intégrateur. 
 Comme le signal de sortie est un signal triangulaire, le temps de montée et de descente est 
-identique. Le temps de montée vaut donc $\frac{1}{2\cdot1} = \unit{0.55}{\second}$. 
+identique. Le temps de montée vaut donc $\frac{1}{2\cdot1} = \unit{0.5}{\second}$. 
 La pente de montée de la droite est de \unit{1}{\milli\volt}/\unit{}{\second}. 
 Le temps pour monter ou descendre de \unit{1}{\volt} est de \unit{1000}{\second}. 
 Comme il doit valoir \unit{0.5}{\second}, la constante d'intégration vaut 2000. D'où 
-$\frac{1}{R_1C_1} = 2000$ avec $C_1= \unit{100}{\nano\farad}$, $R_1 = \unit{5}{\kilo\ohm}$.
+$K=\frac{1}{R_1C_1} = 2000$ avec $C_1= \unit{100}{\nano\farad}$, $R_1 = \unit{5}{\kilo\ohm}$.
 \paragraph{Dimensionnement du contrôleur de l'intégrateur}
 Le contrôleur de l'intégrateur est constitué d'un amplificateur opérationnel 
 en mode différentiel et d'un switch. L'équation constitutive de ce bloc est : 
 $V_{IC}=2*V_+ - V_-$ avec $V_+$ la tension à l'entrée non-inverseuse et $V_-$
 la tension à l'entrée inverseuse. La formule suivante permettant de déterminer
 une relation entre les résistances est obtenue en appliquant KCL : 
-\[ V_{IC}=V_+ \left(\frac{\left(R_4 + R_5\right)R_3}{R_3R_5}\right)-V_-\left(\frac{R_4}{R_5}\right). \] 
-Cela donne donc $R_5 = R_4 = 2R_3$. En prenant $R_5 =$ \unit{1}{\kilo\ohm}, $R_4$ vaut \unit{1}{\kilo\ohm}
-et $R_3$ vaut \unit{2}{\kilo\ohm}.
+\[ V_{IC}=V_+ \left(\frac{R_4 + R_5}{R_5}\right)-V_-\left(\frac{R_4}{R_5}\right). \] 
+Cela donne donc $R_5 = R_4$. En prenant $R_5 =$ \unit{1}{\kilo\ohm}, $R_4$ vaut \unit{1}{\kilo\ohm}
+et $R_3$ vaut \unit{10}{\kilo\ohm}.
 
 \section{Confrontation  des mesures et de la théorie}
 % TODO
-\begin{figure}[ht]
-	\centering
-	\includegraphics[width=0.8\textwidth]{img-vco/vco_simulation.png}
-	\caption{Simulation des signaux de sortie des différents blocs}
-	\label{fig:out_vco_th}
-\end{figure}
-
-La figure \ref{fig:out_vco_th} affiche la simulation des signaux 
-aux sorties des trois blocs fonctionnels pour une tension d'entrée
-de \unit{500}{\milli\volt}. Le signal à la sortie du contrôleur est
-affiché en vert et le signal à la sortie du bloc intégrator en bleu.
- Ce signal est également le signal de sortie finale du VCO. Pour terminer, le signal à la sortie du trigger est affiché en rouge.
-
-\begin{figure}[ht]                                       
-	\centering
-	\includegraphics[width=0.8\textwidth]{img-vco/vco_real_out.png}
-	\caption{Sortie des différens blocs. De gauche à droite. Sortie de l'integrator, sortie du trigger et sortie de l'integrator controller}
-	\label{fig:out_vco_real}
-\end{figure}
-
-La figure \ref{fig:out_vco_real} montre ces mêmes signaux aux sorties
-du circuit réel pour une tension d'entrée de \unit{500}{\milli\volt}. 
-Les différences entre les deux sont très faibles excepté la sortie du
-bloc du contrôleur qui en descente ne passe pas directement 
-de \textit{ON} à \textit{OFF} mais le fait progressivement. Cela ressemble à un effet 
-capacitif au niveau du switch. Si la fréquence augmente, cet effet 
-modifie complètement la réponse en fréquence du VCO.
+%\begin{figure}[ht]
+%	\centering
+%	\includegraphics[width=0.8\textwidth]{img-vco/vco_simulation.png}
+%	\caption{Simulation des signaux de sortie des différents blocs}
+%	\label{fig:out_vco_th}
+%\end{figure}
+%
+%La figure \ref{fig:out_vco_th} affiche la simulation des signaux 
+%aux sorties des trois blocs fonctionnels pour une tension d'entrée
+%de \unit{500}{\milli\volt}. Le signal à la sortie du contrôleur est
+%affiché en vert et le signal à la sortie du bloc intégrator en bleu.
+% Ce signal est également le signal de sortie finale du VCO. Pour terminer, le signal à la sortie du trigger est affiché en rouge.
 
 La figure \ref{fig:theory_vs_mesure} montre que la réalité est la théorie sont très proche.
 Les différences observées sont dues à des imprécisions des valeurs des résistances et des 

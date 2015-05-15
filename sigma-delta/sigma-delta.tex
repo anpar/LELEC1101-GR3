@@ -1,10 +1,20 @@
 \input{../lib.tex}
-\doctitle{Dimensionnement du modulateur sigma-delta}
+\doctitle{Modulateur sigma-delta}
+Le modulateur sigma-delta se trouve à la suite du filtre et avant l'amplifacteur de classe D. Ce bloc a pour but de moduler le signal d'entrée (un pseudo sinus) par largeur d'impulsion, c'est-à-dire en signal carré de valeurs seuils constantes mais de fréquence variable dont la valeur moyenne est égale à la valeur absolue du signal initial. L'obtention d'un signal composé de deux états est nécessaire pour une utilisation optimale en terme de puissance de l'amplificateur de classe D. (........)
 
-\subsection{Fonctionnement et théorie}
-Le schéma-bloc du modulateur sigma-delta se trouve
-à la figure \ref{fig:sigma-delta-schema-blocs}. Le
-modulateur du synthétiseur utilise une bascule asymétrique.
+%\begin{figure}[ht]
+%	\centering
+%	\includegraphics[scale=0.7]{....}
+%	\caption{Entré et sortie du sigma-delta}
+%	\label{fig:entrée-sortie-sigma-delta}
+%\end{figure}
+
+\section{Fonctionnement du système}
+
+La fréquence de commutation (....) du sigma-delta est supposée très élevée par rapport au signal d'entrée. Ceci permet de considérer le signal d'entrée continu de façon locale.
+
+
+Voici ci-dessous le schéma bloc du sigma-delta.
 
 \begin{figure}[ht]
 	\centering
@@ -12,6 +22,9 @@ modulateur du synthétiseur utilise une bascule asymétrique.
 	\caption{Schéma bloc du modulateur sigma-delta.}
 	\label{fig:sigma-delta-schema-blocs}
 \end{figure}
+
+Ce bloc est constitué de deux parties distinctes : un intégrateur et une bascule asymétrique.
+L'intégrateur est caractérisé par un coefficient d'intégration K. La bascule est elle caractérisée par deux tensions de basculement : $V_H$, la tension de basculement haute  fixée arbitrairement à 0 et $V_L$, la tension de basculement basse avec $\Delta V = V_H - V_L$, ainsi que des valeurs seuils de sortie : $V_{\text{outH}} = E$, la tension de sortie haute, et la tension $V_{\text{outL}} = 0$. $V_{\text{outL}}$ est fixée à 0 car l'amplificateur de classe D nécessite en entré une tension positive ($E$), ou 0.
 
 La période d'oscillation du signal de sortie (qui est 
 identique à la période d'oscillation du signal intermédiaire
@@ -52,21 +65,31 @@ racine en \unit{E}{\volt}.
 La fréquence de sortie maximale est atteinte pour 
 $V_{\text{ref}} = \frac{E}{2}$ et vaut
 \[ f_{\text{max}} = \frac{K}{\Delta V}\frac{E}{4}. \]
-Ensuite, pour un signal $V_{\text{ref}}$ sinusoïdal dont
-l'amplitude peut être négative, la fréquence sature.
-Or, dans le cas du synthétiseur, le signal $V_{\text{ref}}$
-est la sortie de notre VCO (après passage dans un filtre pour
-en extraire une sinusoïdale pure).
-Il faudra donc ``déplacer'' la parabole de manière à ce qu'elle soit
-centrée autour de l'origine.
+Le sigma-delta doit remplir certaines spécifications afin de remplir son rôle au sein du système global : \begin{enumerate}
+\item Le signal de sortie ne peut pas atteindre de fréquence nulle pour la gamme d'amplitude du signal d'entrée car la valeur moyenne du signal de sortie ne correspondrait pas au signal d'entrée pour ces deux racines.
+\item La fréquence de sortie du sigma-delta doit respecter le théorème d'échantillonage de Shannon, c'est-à-dire que la fréquence de sortie doit être au minimum deux fois supérieure à la fréquence maximale du signal d'entrée afin de permettre la reconstitution du signal d'entrée.
+\item La fréquence maximale d'entrée de l'amplificateur de classe D est de 100kHz.
+\item La bascule ne doit pas être sensible au bruit, $V_{\text{ref}}$ ne doit donc pas être trop faible.
+\end{enumerate}
 
-\subsection{Dimensionnement et circuit réel}
+Afin de répondre à ces conditions, la fréquence maximale de sortie est fixée à 80kHz. La parabole (fréquence de sortie/amplitude d'entrée) est centrée autour de l'origine car le signal d'entrée est centrée en 0 et les racines de celles-ci se situent en +15V et -15V. Ainsi, la gamme d'amplitude de tension d'entrée étant de -3V à 3V la fréquence de sortie n'est jamais nulle. De plus, la fréquence maximale du signal d'entrée étant de 8kHz, la fréquence du signal de sortie est bien supérieure au double de cette fréquence pour l'ensemble de la gamme d'amplitude. $V_{\text{ref}}$ est fixé arbitrairement à $1V$.
+
+La figure ci-dessous illustre la réponse en fréquence établie et met en évidence la limite induit par le théorème de Shannon ainsi que la gamme utiliser par notre système.
+\begin{figure}[ht]
+	\centering
+	%\includegraphics[scale=0.6]{GRAPHE1MATLAB.png}
+	\caption{Fréquence de sortie en fonction de la tension d'entrée et contraintes}
+	\label{fig:de}
+\end{figure}
+Il est possible de constater que la zone utilisée est nettement inférieure à la zone exploitable. Cela sera mis plus en avant dans la section %(\f !!!!!!!!).
+
+\section{Dimensionnement et circuit réel}
 Le circuit du modulateur sigma-delta est représenté
 à la figure \ref{fig:sigma-delta-circuit}.
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[scale=0.6]{img-sigma-delta/sigma-delta-circuit.png}
+	%\includegraphics[scale=0.6]{img-sigma-delta/sigma-delta-circuit.png}
 	\caption{Circuit du modulateur.}
 	\label{fig:sigma-delta-circuit}
 \end{figure}
@@ -132,7 +155,7 @@ Pour appliquer la signal de sortie du modulateur
 résistif car l'étage suivant ne supporte pas des entrées supérieures
 à \unit{5}{\volt}.
 
-\subsection{Confrontation des mesures et de la théorie}
+\section{Confrontation des mesures et de la théorie}
 En superposant le graphe théorique que nous pouvons obtenir avec les valeurs
 obtenues dans la section précédente
 et des mesures effectuées sur une implémentation en circuit
