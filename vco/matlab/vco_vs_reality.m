@@ -8,7 +8,7 @@ f = vin*1000;
 %fmes = [0.524 0.570 0.597 0.638 0.680 0.720 0.760 0.799 0.880 0.920 5.63 6.112 6.658 7.13 7.644 8.135 8.61 9.11 9.6 10.04]*1000;
 vinmes = [0.510 0.690 0.98 1.39 1.96 2.8 3.96 5.57 7 7.87];
 fmes = [0.535 0.704 0.985 1.39 1.94 2.76 3.91 5.47 6.84 7.64]*1000;
-plot(vinmes,fmes, '+g', 'linewidth', 11); hold on;
-plot(vin,f, 'linewidth', 4); grid;
+plot(vinmes,fmes, '+g', 'linewidth', 3); hold on;
+plot(vin,f, 'linewidth', 1); grid;
 xlabel('V_{in} [V]')
 ylabel('fréquence [Hz]')

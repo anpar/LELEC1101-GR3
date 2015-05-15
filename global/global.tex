@@ -27,8 +27,7 @@ pour l'ensemble des notes, mais le tableaux ne reprend que
 quelques valeurs significatives et les maximas. Le clavier a
 été calibré avant la prise de mesure.
 
-\begin{table}
-	\centering
+\begin{center}
 	\begin{tabular}{|c|c|c|c|}
 		\hline
 		Clavier &  \multicolumn{2}{c|}{Filtre} &  Sortie audio \\
@@ -43,9 +42,7 @@ quelques valeurs significatives et les maximas. Le clavier a
 		F8 &  2.3 & 1.29 & 2.1\\
 		\hline
 	\end{tabular}
-	\caption{Tableau de validation du système global.}
-	\label{tab:tab-global}
-\end{table}
+\end{center}
 
 Cette partie du système remplit bien son rôle. L'erreur en 
 fréquence se trouve dans une gamme raisonnable (de -3.8\% à 3.2\%)
@@ -86,7 +83,7 @@ Pour cela, il est nécessaire de concevoir un nouveau filtre.
 
 Il est également possible de réaliser un clavier dont la sortie serait directement
 liée à la masse lorsqu'aucune touche n'est enfoncée, sans nécessiter un comparateur
-et un switch. Cependant cette solution nous échappe encore.ytred
+et un switch. Cependant cette solution nous échappe encore.
 
 Comme mis en avant dans la section \ref{sec:sigma-delta} concernant le
 sigma-delta, le bloc 'sigma-delta' actuel n'utilise qu'une mince zone
