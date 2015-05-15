@@ -2,12 +2,53 @@
 Le but du clavier est de générer des tensions continues
 différentes pour chaque note. Ces tensions continues
 seront ensuite transformer en signal périodique par un
-oscillateur contrôlé en tension.
+oscillateur contrôlé en tension (voir chapitre \ref{chap:vco}).
 
-\section{Fonctionnement}
+\section{Fonctionnement théorique}
 Le principe de fonctionnement du clavier est assez simple.
-On peut le séparer en 3 blocs
+Il peut être divisé en 3 blocs, comme représenté sur la
+figure \ref{fig:keyboard-bloc}.
 
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale=0.6]{img-keyboard/bloc.png}
+	\caption{Schéma bloc du clavier.}
+	\label{fig:keyboard-bloc}
+\end{figure}
+
+Le premier bloc permet le réglage des octaves. Il doit
+être capable, à partir d'une tension constante d'approximativement
+\unit{15}{\volt}, de fournir le plus précisément possible chacun 
+des 4 niveaux de tensions indiqués sur la figure \ref{fig:keyboard-bloc}.
+Ce premier bloc a donc un rôle de diviseur de tension.
+
+A partir de ces niveaux de tensions, un deuxième bloc va
+permettre le réglage des notes. Ce bloc divise sa tension d'entrée
+de manière à faire correspondre à chaque note un niveau de tension
+telle que \unit{1}{\milli\volt} corresponde à \unit{1}{\hertz}
+\footnote{Et ce afin de répondre aux spécifications de l'oscillateur
+contrôlé en tension, présenté au chapitre \ref{chap:vco}.}. Ce deuxième
+bloc a donc à nouveau un rôle de diviseur de tension. Il est important
+de noter que, lorsque aucune note n'est demandée, la tension de sortie
+du deuxième bloc (et donc la tension de sortie du clavier) est égale à
+sa tension d'entrée.
+
+Enfin, le clavier est composé d'un troisième bloc. Ce dernier bloc permet
+de corriger un défaut du clavier : sa sortie est non-nulle même si aucune
+note n'est demandée et, par conséquent, le synthétiseur produit du son
+même lorsque personne n’appuie sur une touche du clavier. Pour pallier
+ce problème, le dernier bloc compare une fraction de la tension $E$ avec la
+tension de sortie du clavier. Cette fraction, en l’occurrence 
+$\frac{4}{5}$, a été choisie judicieusement afin de pouvoir détecter
+si une touche est pressée ou non. Si $V_{\text{out}}$ est inférieur à
+$\frac{4}{5}E$, alors une touche est pressée et le bloc ``Comparateur''
+produira une tension continue de \unit{+15}{\volt}. Dans le cas contraire,
+ce bloc produit une tension nulle. A partir de ces deux niveaux de tension,
+un autre bloc situé dans l'oscillateur contrôlé en tension ouvrira son entrée
+si aucune touche n'est pressée, et la fermera dans le cas contraire, réglant
+ainsi le problème du son constant.
+ 
+\section{Implémentation circuit et dimensionnement}
 Le clavier considéré ici comprend 12 touches, une pour
 chaque note et sa dièse correspondante. Quatre autres
 boutons permettent de passer d'une octave à une autre.
@@ -60,7 +101,6 @@ Arbitrairement, $E$ vaut \unit{14}{\volt} pour l'octave
 La présence d'un amplificateur suiveur entre ce premier
 réseau de diviseurs résistifs et le suivant est indispensable
 pour éviter les rendre indépendants.
-
 
 Le tableau \ref{tab:keyboard-dim} résume les résultats du dimensionnement
 du clavier. Seules les valeurs standard de la série de Renard
