@@ -1,6 +1,17 @@
 \chapter{L'oscillateur contrôlé en tension (VCO)}
-\section{Rôle}
-Le VCO est la partie qui s'occupe de générer un signal alternatif à partir d'une tension continue. La fréquence du signal généré dépend de manière linéaire à la tension d'entrée avec comme relation tension-fréquence : \unit{1}{\milli\volt} correspond à \unit{1}{\hertz}.
+\label{chap:vco}
+Le VCO est la partie qui s'occupe de générer un signal périodique à partir d'une tension continue. 
+La fréquence du signal généré dépend de manière linéaire à la tension d'entrée avec comme relation
+tension-fréquence : \unit{1}{\milli\volt} correspond à \unit{1}{\hertz}. Le comportement
+souhaité du VCO est représente sur la figure \ref{fig:in-out-vco}.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale=0.3]{img-vco/in-out.png}
+	\caption{Relation entrée-sortie souhaitée du VCO.}
+	\label{fig:in-out-vco}
+\end{figure}
+
 \section{Fonctionnement et théorie}
 La figure \ref{fig:schema_bloc_vco} montre le schéma-bloc du VCO.
 
@@ -87,20 +98,6 @@ Cela donne donc $R_5 = R_4$. En prenant $R_5 =$ \unit{1}{\kilo\ohm}, $R_4$ vaut 
 et $R_3$ vaut \unit{10}{\kilo\ohm}.
 
 \section{Confrontation  des mesures et de la théorie}
-% TODO
-%\begin{figure}[ht]
-%	\centering
-%	\includegraphics[width=0.8\textwidth]{img-vco/vco_simulation.png}
-%	\caption{Simulation des signaux de sortie des différents blocs}
-%	\label{fig:out_vco_th}
-%\end{figure}
-%
-%La figure \ref{fig:out_vco_th} affiche la simulation des signaux 
-%aux sorties des trois blocs fonctionnels pour une tension d'entrée
-%de \unit{500}{\milli\volt}. Le signal à la sortie du contrôleur est
-%affiché en vert et le signal à la sortie du bloc intégrator en bleu.
-% Ce signal est également le signal de sortie finale du VCO. Pour terminer, le signal à la sortie du trigger est affiché en rouge.
-
 La figure \ref{fig:theory_vs_mesure} montre que la réalité est la théorie sont très proche.
 Les différences observées sont dues à des imprécisions des valeurs des résistances et des 
 capacités. Cela provient aussi du switch qui contrairement au modèle utilisé dans les 
