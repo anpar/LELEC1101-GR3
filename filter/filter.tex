@@ -1,5 +1,5 @@
 \chapter{Filtre}
-\section{Introduction}
+\label{sec:filtre}
 Le MLI a besoin d'un signal sinusoïdal pour fonctionner, cependant, le VCO fournit un
 signal triangulaire. Il est donc nécessaire d'avoir un filtre intermédiaire permettant
 de transformer le signal de sortie du VCO en signal sinusoïdal ou tout du moins pseudo-sinusoïdal.
@@ -18,7 +18,7 @@ celui présenté sur la figure \ref{fig:filter-in-out}.
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[scale=0.3]{img-filter/circuit-colored.png}
+	\includegraphics[scale=0.4]{img-filter/circuit-colored.png}
 	\caption{Circuit du filtre.}
 	\label{fig:circuit-filtre}
 \end{figure}
@@ -48,14 +48,17 @@ Le circuit possède ainsi 4 états différents selon sa tension d'entrée :
 \end{enumerate}
 
 \section{Détails du circuit}
-
 \begin{enumerate}
 	\item Signal d'entrée :\\
 				Le signal d'entrée doit être suffisament grand pour commencer à être
 				écrêter par trois diodes en série, le signal de sortie culminera donc
 				aux alentours de \unit{1.9}{\volt}. Le signal d'entrée est donc le signal
 				triangulaire circonscrit au signal sinusoïdal d'amplitude \unit{1.9}{\volt},
-				soit un signal triangulaire d'amplitude \unit{3}{\volt} ;
+				soit un signal triangulaire d'amplitude \unit{3}{\volt}\footnote{Comme expliqué
+				dans le chapitre \ref{chap:vco}, la sortie du VCO est un triangle compris entre
+				\unit{-1}{\volt} et \unit{0}{\volt}. Un bloc supplémentaire comprenant un filtre
+				passe haut (afin de supprimer la composante continue) et un amplificateur opérationnel
+				(pour amplifier le signal) a donc été ajouté après le VCO.} ;
 	\item Valeur des résistances : \\
 		\begin{enumerate}
 			\item Première approximation : $R_0$ a été définie à \unit{1}{\kilo\ohm}. $R_1$ quant à lui
@@ -67,7 +70,6 @@ Le circuit possède ainsi 4 états différents selon sa tension d'entrée :
 
 						Avec cette première approximation, le taux de distortion harmonique total est compris entre 0.51\% 
 						(\unit{500}{\hertz}) et 0.5\%(\unit{10}{\kilo\hertz}).
-						% FIX : compris entre 0.51 et 0.5, really ?!?
 			\item Seconde approximation : pour améliorer ensuite le pseudo-sinus, des tests empiriques ont amené
 						à une valeur de \unit{12.1}{\kilo\ohm} pour $R_1$ et de \unit{2.1}{\kilo\ohm} pour $R_2$.\\
 						Avec ces nouvelles valeurs, le taux de distortion harmonique total est compris entre 0.3\% 
@@ -79,7 +81,7 @@ Le circuit possède ainsi 4 états différents selon sa tension d'entrée :
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[scale=0.3]{img-filter/FFT.png}
+	\includegraphics[scale=0.4]{img-filter/FFT.png}
 	\caption{FFT avec les résistances de la seconde estimation.}
 	\label{fig:fft-filtre}
 \end{figure}
@@ -88,12 +90,12 @@ Le circuit possède ainsi 4 états différents selon sa tension d'entrée :
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[scale=0.3]{img-filter/THD.png}
+	\includegraphics[scale=0.6]{img-filter/THD.png}
 	\caption{Confrontation THD réel et théorique}
 	\label{fig:thd-filtre}
 \end{figure}
 
-Dans la pratique, le TDH\footnote{Pour taux de distortion harmonique} 
+Dans la pratique, le TDH\footnote{Pour taux de distortion harmonique.} 
 est non seulement beaucoup plus important que dans la réalité, mais aussi beaucoup plus 
 variable (voir figure \ref{fig:thd-filtre}). Cela est principalement dû au manque de précision des composants dans le filtre
 et en amont\footnote{En effet, cela cause une imprécision dans le signal d'entrée du filtre

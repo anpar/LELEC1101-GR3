@@ -45,6 +45,7 @@
 \newcommand{\specialcell}[2][c]{%
 \begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
 
+\begin{document}
 \begin{titlepage}
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}} 
 \center 
@@ -54,7 +55,7 @@
 \HRule \\[0.4cm]
 { \huge \bfseries LELEC1101 - "I can't stop the music!"}\\
 {\LARGE Conception et réalisation d'un synthétiseur analogique}\\[0.5cm] 
-\\[0.4cm] \HRule \\[0.1cm]
+\HRule \\[0.1cm]
 
 \begin{figure}[ht]
 \centering
@@ -98,9 +99,7 @@ Antoine \textsc{Paris} & 3158-13-00 \\
 
 \vfill % Fill the rest of the page with whitespace
 \end{titlepage}
-
-\begin{document}
-\maketitle
+%\maketitle
 \tableofcontents
 
 \input{../intro/intro.tex}
