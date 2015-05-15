@@ -1,0 +1,117 @@
+\documentclass{scrreprt}
+% Language
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}      
+\usepackage[francais]{babel}
+\usepackage{array}
+% Layout and figures
+\usepackage[top=2.5cm,bottom=2.5cm,right=2.5cm,left=2.5cm]{geometry}
+\usepackage{subfigure}
+\usepackage{rotating}
+% Units and numbers
+\usepackage[squaren, Gray]{SIunits}
+\usepackage{sistyle}
+\usepackage[autolanguage]{numprint}
+% Math
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+% Sets
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+% Links
+\usepackage{url}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+\usepackage{circuitikz}
+% New commands
+\newcommand{\matlab}{\textsc{Matlab}}
+\newcommand{\annexe}{\part{Annexes}\appendix}
+\newcommand{\biblioreport}[1]{\bibliographystyle{plain}\bibliography{#1}\nocite{*}}
+\DeclareMathOperator{\newdiff}{d} % use \dif instead
+\newcommand{\dif}{\newdiff\!}
+\newcommand{\fpart}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\ffpart}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+\newcommand{\fdpart}[3]{\frac{\partial^2 #1}{\partial #2\partial #3}}
+\newcommand{\fdif}[2]{\frac{\dif #1}{\dif #2}}
+\newcommand{\ffdif}[2]{\frac{\dif^2 #1}{\dif #2^2}}
+\newcommand{\specialcell}[2][c]{%
+\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+
+\begin{titlepage}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} 
+\center 
+\textsc{\Large Universit\'e Catholique de Louvain}\\[1cm] 
+\textsc{\LARGE LELEC1101 - Projet d'éléctricité}\\[0.5cm] 
+
+\HRule \\[0.4cm]
+{ \huge \bfseries LELEC1101 - "I can't stop the music!"}\\
+{\LARGE Conception et réalisation d'un synthétiseur analogique}\\[0.5cm] 
+\\[0.4cm] \HRule \\[0.1cm]
+
+\begin{figure}[ht]
+\centering
+\includegraphics [scale=0.85] {cover.png}
+\end{figure}
+
+{ \Large
+\begin{center}
+\textbf{Groupe 3}
+\end{center}
+}
+
+\begin{minipage}{0.7\textwidth}
+\begin{center}
+\begin{tabular}{lc}
+Michel \textsc{de Broux} & 8707-13-00 \\
+Lionel \textsc{Colpin} & 3965-12-00 \\
+Damien \textsc{Deprez} & 2893-13-00 \\
+Thibault \textsc{Martinelle} & 8737-13-00 \\
+Antoine \textsc{Paris} & 3158-13-00 \\
+\end{tabular}
+\end{center}
+
+\end{minipage}\\[1cm]
+
+%----------------------------------------------------------------------------------------
+%	DATE SECTION
+%----------------------------------------------------------------------------------------
+
+{\large Ann\'ee acad\'emique 2014-2015}\\[0,25cm] 
+{\large \'Ecole Polytechnique de Louvain}\\[1cm]
+
+%----------------------------------------------------------------------------------------
+%	LOGO SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{center}
+  \includegraphics[width = 20mm]{epl.jpg} \hfill
+\end{center}
+%----------------------------------------------------------------------------------------
+
+\vfill % Fill the rest of the page with whitespace
+\end{titlepage}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\input{../intro/intro.tex}
+\input{../general-functionning/general-functionning.tex}
+\input{../keyboard/keyboard.tex}
+\input{../vco/vco.tex}
+\input{../filter/filter.tex}
+\input{../sigma-delta/sigma-delta.tex}
+\input{../global/global.tex}
+\input{../conclu/conclu.tex}
+
+\biblioreport{biblio}
+
+\end{document}
