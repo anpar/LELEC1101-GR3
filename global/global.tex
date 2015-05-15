@@ -52,7 +52,7 @@ fréquence se trouve dans une gamme raisonnable (de -3.8\% à 3.2\%)
 sur l'ensemble de la gamme fréquentielle couverte. Les notes 
 correspondent donc chaque fois à la note souhaitée, et non à celle
 supérieure ou inférieure.
-Quant au taux de distortion harmonique, il ne dépasse pas 2.8\%.
+Quant au taux de distorsion harmonique, il ne dépasse pas 2.8\%.
 
 Des 'glitchs' apparaissent sur l'ensemble du circuit et ce à 
 même fréquence que la fréquence de sortie du sigma-delta. Ceci est dû au fait que
@@ -61,10 +61,10 @@ que légèrement la qualité du système.
 
 \section{Pistes d'amélioration}
 \label{sec:pistes-amelioration}
-La conception et la mise en oeuvre de chaque bloc ont été effectué
+La conception et la mise en œuvre de chaque bloc ont été effectuées
 de manière locale et non globale, des blocs
-intermédiaires (adaptateurs) ont dû être ajouté en conséquence. Une vision plus
-globale dès le début du projet aurait permis une simplifaction du
+intermédiaires (adaptateurs) ont dû être ajoutés en conséquence. Une vision plus
+globale dès le début du projet aurait permis une simplification du
 système final ainsi qu'une diminution du nombre de composants et
 donc de puissance utilisée et d'erreurs possibles.
 
@@ -72,12 +72,12 @@ En pratique, il aurait été possible de modifier la gamme de sortie
 du VCO afin que celle-ci corresponde à l'entrée du filtre (
 triangle entre \unit{-3}{\volt} et \unit{+3}{\volt}), et donc 
 supprimer l'adaptateur. Il faut pour cela modifier les seuils
-de basculements de la bascule à hystérèse afin qu'ils soient de
+de basculement de la bascule à hystérèse afin qu'ils soient de
 \unit{-3}{\volt} et \unit{+3}{\volt}, et ensuite adapter la
 constante d'intégration pour que le lien amplitude d'entrée/fréquence
 de sortie soit toujours respecté. D'un point de vue circuit, il s'agit
-donc de changer les résistances caractéristiques de la basucle, et le
-condensateur nécessaire à l'intégration. Réaliser l'opération inverse,
+donc de changer les résistances caractéristiques de la bascule, et le
+condensateur nécessaires à l'intégration. Réaliser l'opération inverse,
 c'est-à-dire modifier les caractéristiques du filtre afin qu'il accepte
 en entrée un signal correspondant à la sortie actuelle du VCO 
 (triangle entre \unit{-1}{\volt} et \unit{0}{\volt}) n'aurait pas été 
@@ -85,7 +85,7 @@ possible étant donné la conception de celui-ci (voir section \ref{sec:filtre})
 Pour cela, il est nécessaire de concevoir un nouveau filtre.
 
 Il est également possible de réaliser un clavier dont la sortie serait directement
-liée à la masse lorsqu'aucune touche n'est enfoncée, sans nécéssiter un comparateur
+liée à la masse lorsqu'aucune touche n'est enfoncée, sans nécessiter un comparateur
 et un switch. Cependant cette solution nous échappe encore.ytred
 
 Comme mis en avant dans la section \ref{sec:sigma-delta} concernant le
@@ -94,7 +94,7 @@ de fréquence de commutation. En effet, il serait possible de diminuer
 les racines de la parabole de la figure \ref{fig:sigma-delta-lim}, 
 afin que la zone de fréquence atteignable pour le signal d'entrée 
 (compris entre \unit{-3}{\volt} et \unit{3}{\volt})
-soit plus importante toute en s'assurant que la fréquence minimale
+soit plus importante tout en s'assurant que la fréquence minimale
 atteinte soit au-delà de la fréquence de Shannon (\unit{16}{\kilo\hertz} dans
 notre cas). Il suffit de fixer judicieusement les deux tensions d'entrée qui produisent
 en sortie un signal dont la fréquence correspond à la fréquence de Shannon. 
